@@ -1,0 +1,50 @@
+___Pro Spring 5____
+
+- Parent Module - (File->New->Project)
+	groupId: 		ch.ttt
+	artifactId:		prospring5
+	project name:		prospring5
+	project location: 	D:\dev\workspace\prospring5
+	module name: 		parent
+	content root:		D:\dev\workspace\prospring5\parent
+
+- Modules - (parent->New->Module)
+	groupId: 	ch.ttt
+	artifactId:	ch2-gettingstarted
+	module name:	ch2-gettingstarted
+	content root:	D:\dev\workspace\prospring5\ch2-gettingstarted
+
+- Package Names -
+	ch2.apps, ch2.shared, etc.
+	chapter.<anything short>
+
+
+____Pro JPA 2____
+
+- Parent Module -
+	groupId: 		ch.ttt
+	artifactId:		projpa2
+	project name:		projpa2
+	project location: 	D:\dev\workspace\projpa2
+	module name: 		parent
+	content root:		D:\dev\workspace\projpa2\parent
+
+- Modules -
+	groupId: 	ch.ttt
+	artifactId:	ch2-gettingstarted
+	module name:	ch2-gettingstarted
+	content root:	D:\dev\workspace\projpa2\ch2-gettingstarted
+
+- Package Names -
+	ch2.apps, ch2.shared, etc.
+	chapter.<anything short>
+__________________________________________________________________________
+
+Comments:
+
+   - parent->New->Module automatically updates parent and module poms 
+     with <modules> resp. <parent>
+
+   - delete src folder in parent module
+
+   - use package names with chapter name for non confusing imports
