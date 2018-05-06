@@ -1,10 +1,13 @@
 import javax.persistence.*;
 
 /*
- * Diese Klasse verwendet mixed access. Per default
- * werden die Variablen mit der DB gemapped (Field Access).
- * Ausnahme: phoneNum verwendet Property Access, da dessen Daten nicht
- * 1:1 mit denen der DB übereinstimmen.
+ * Diese Klasse verwendet mixed access. Per default werden die Variablen (= Field Access)
+ * für das Mapping mit den DB Columns verwendet.
+ * phoneNum verwendet getter/setter (= Property Access) für das Mapping , da dessen Daten
+ * nicht 1:1 mit denen der DB übereinstimmen.
+ *
+ *  --- Entity ---                              --- DB ---
+ *  field 'phoneNum' ohne Area Code             Column 'PHONE' mit area code
  */
 
 @Entity
