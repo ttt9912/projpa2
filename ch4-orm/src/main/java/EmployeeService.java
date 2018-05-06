@@ -9,10 +9,11 @@ public class EmployeeService {
         this.em = em;
     }
 
-    public Employee createEmployee(int id, String name, long salary) {
+    public Employee createEmployee(int id, String name, long salary, String phoneNum) {
         Employee employee = new Employee(id);
         employee.setName(name);
         employee.setSalary(salary);
+        employee.setPhoneNum(phoneNum);
 
         em.persist(employee);
         return employee;
@@ -36,13 +37,5 @@ public class EmployeeService {
         if (employee != null) {
             em.remove(employee);
         }
-    }
-
-    public Employee raiseSalary(int id, long amount) {
-        Employee employee = em.find(Employee.class, id);
-        if (employee != null) {
-            employee.setSalary(employee.getSalary() + amount);
-        }
-        return employee;
     }
 }

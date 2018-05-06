@@ -13,25 +13,9 @@ public class EmployeeApplication {
 
         // Create and persist an Entity
         em.getTransaction().begin();
-        Employee employee = employeeService.createEmployee(159, "John Doe", 45000);
+        Employee employee = employeeService.createEmployee(159, "John Doe", 45000, "456789");
         em.getTransaction().commit();
         System.out.println("Persisted: " + employee);
-
-        // find by id
-        employee = employeeService.findEmployee(159);
-        System.out.println("Found: " + employee);
-
-        // use setter
-        em.getTransaction().begin();
-        employee = employeeService.raiseSalary(159, 15000);
-        em.getTransaction().commit();
-        System.out.println("Updated: " + employee);
-
-        // remove
-        em.getTransaction().begin();
-        employeeService.deleteEmployee(employee);
-        em.getTransaction().commit();
-        System.out.println("Deleted Employee: " + employee.getId());
 
         // find all
         List<Employee> allEmployees = employeeService.findAllEmployees();
