@@ -1,17 +1,9 @@
 import javax.persistence.*;
-
-/*
- * Diese Klasse verwendet mixed access. Per default werden die Variablen (= Field Access)
- * für das Mapping mit den DB Columns verwendet.
- * phoneNum verwendet getter/setter (= Property Access) für das Mapping , da dessen Daten
- * nicht 1:1 mit denen der DB übereinstimmen.
- *
- *  --- Entity ---                              --- DB ---
- *  field 'phoneNum' ohne Area Code             Column 'PHONE' mit area code
- */
+import java.util.Date;
 
 @Entity
-@Access(AccessType.FIELD)
+@Table(name = "EMPL")
+@Access(AccessType.FIELD) // mixed access
 public class Employee {
 
     private static final String LOCAL_AREA_CODE = "613";
@@ -21,7 +13,18 @@ public class Employee {
     private String name;
     private long salary;
     @Transient
-    private String phoneNum; // soll ignoriert werden, damit es nicht doppelt persistiert wird
+    private String phoneNum; // property access: soll nicht doppelt persistiert werden
+    @Column(name = "COMM")
+    private String comment;
+    @Basic(fetch = FetchType.LAZY)  // only fetched when requred
+    @Lob                            // Lob: marker annotation for a large object
+    private transient byte[] picture;   // not persistet
+    @Enumerated(EnumType.STRING)    // save Enum by its value instead of ordinal
+    private EmployeeType type;
+    private java.sql.Date dateOfBirth;
+    @Temporal(TemporalType.DATE)    // non-sql date types need to be mapped to sql types
+    private Date startDate;
+
 
     public Employee() {
     }
@@ -68,6 +71,46 @@ public class Employee {
             this.phoneNum = phoneNum.substring(3);
         else
             this.phoneNum = phoneNum;
+    }
+
+    public String getComment() {
+        return comment;
+    }
+
+    public void setComment(String comment) {
+        this.comment = comment;
+    }
+
+    public byte[] getPicture() {
+        return picture;
+    }
+
+    public void setPicture(byte[] picture) {
+        this.picture = picture;
+    }
+
+    public EmployeeType getType() {
+        return type;
+    }
+
+    public void setType(EmployeeType type) {
+        this.type = type;
+    }
+
+    public java.sql.Date getDateOfBirth() {
+        return dateOfBirth;
+    }
+
+    public void setDateOfBirth(java.sql.Date dateOfBirth) {
+        this.dateOfBirth = dateOfBirth;
+    }
+
+    public Date getStartDate() {
+        return startDate;
+    }
+
+    public void setStartDate(Date startDate) {
+        this.startDate = startDate;
     }
 
     @Override
