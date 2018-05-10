@@ -2,9 +2,9 @@ import javax.persistence.*;
 import java.util.Date;
 
 @Entity
-@Table(name = "EMPL")
+@Table(name = "PERS")
 @Access(AccessType.FIELD) // mixed access
-public class Employee {
+public class Person {
 
     private static final String LOCAL_AREA_CODE = "613";
 
@@ -20,16 +20,16 @@ public class Employee {
     @Lob                            // Lob: marker annotation for a large object
     private transient byte[] picture;   // not persistet
     @Enumerated(EnumType.STRING)    // save Enum by its value instead of ordinal
-    private EmployeeType type;
+    private PersonType type;
     private java.sql.Date dateOfBirth;
     @Temporal(TemporalType.DATE)    // non-sql date types need to be mapped to sql types
     private Date startDate;
 
 
-    public Employee() {
+    public Person() {
     }
 
-    public Employee(int id) {
+    public Person(int id) {
         this.id = id;
     }
 
@@ -89,11 +89,11 @@ public class Employee {
         this.picture = picture;
     }
 
-    public EmployeeType getType() {
+    public PersonType getType() {
         return type;
     }
 
-    public void setType(EmployeeType type) {
+    public void setType(PersonType type) {
         this.type = type;
     }
 
@@ -115,7 +115,7 @@ public class Employee {
 
     @Override
     public String toString() {
-        return "Employee{" +
+        return "p1_basic_entity_annotations.Person{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", salary=" + salary +
