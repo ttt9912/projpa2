@@ -2,6 +2,13 @@ package entity;
 
 import javax.persistence.*;
 
+/*
+ * @ManyToOne: dies ist die n-Seite der Beziehung, die einen FK besitst (owner)
+ *
+ * @JoinColumn: optional. Mit name wird der Name der FK-Column in der
+ * EMPLOYEE Table bestimmt. Default wäre DEPARTMENT_ID
+ */
+
 @Entity
 public class Employee {
 
@@ -9,8 +16,14 @@ public class Employee {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
     private String name;
+
     @ManyToOne
+    @JoinColumn(name = "DEPT_ID")
     private Department department;
+
+    @OneToOne
+    @JoinColumn(name = "PSPACE_ID")
+    private ParkingSpace parkingSpace;
 
     public Employee() {
     }
@@ -39,12 +52,21 @@ public class Employee {
         this.department = department;
     }
 
+    public ParkingSpace getParkingSpace() {
+        return parkingSpace;
+    }
+
+    public void setParkingSpace(ParkingSpace parkingSpace) {
+        this.parkingSpace = parkingSpace;
+    }
+
     @Override
     public String toString() {
-        return "entity.Employee{" +
+        return "Employee{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", department=" + department +
+                ", parkingSpace=" + parkingSpace +
                 '}';
     }
 }

@@ -3,6 +3,8 @@ package repository;
 import entity.Department;
 
 import javax.persistence.EntityManager;
+import javax.persistence.TypedQuery;
+import java.util.List;
 
 public class DepartmentRepository {
     protected EntityManager em;
@@ -16,5 +18,10 @@ public class DepartmentRepository {
         department.setName(name);
         em.persist(department);
         return department;
+    }
+
+    public List<Department> findAll(){
+        TypedQuery<Department> query = em.createQuery("SELECT d FROM Department d", Department.class);
+        return query.getResultList();
     }
 }

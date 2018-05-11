@@ -2,6 +2,7 @@
 <project version="4">
   <component name="CompilerConfiguration">
     <annotationProcessing>
+      <profile default="true" name="Default" enabled="true" />
       <profile name="Maven default annotation processors profile" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
@@ -13,11 +14,11 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel target="1.8">
-      <module name="ch2-gettingstarted" target="1.5" />
-      <module name="ch3-enterprise" target="1.5" />
-      <module name="ch4-orm-entitybasics" target="1.5" />
-      <module name="ch4-orm-relationships" target="1.5" />
-      <module name="parent" target="1.5" />
+      <module name="ch2-gettingstarted" target="1.8" />
+      <module name="ch3-enterprise" target="1.8" />
+      <module name="ch4-orm-entitybasics" target="1.8" />
+      <module name="ch4-orm-relationships" target="1.8" />
+      <module name="parent" target="1.8" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">

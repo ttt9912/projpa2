@@ -1,9 +1,13 @@
 package entity;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.Collection;
+import java.util.stream.Collectors;
+
+/*
+ * @OneToMany ist die 1-seite der Beziehung. Also die nicht-owner Seite,
+ * die nicht den FK besitzt.
+ */
 
 @Entity
 public class Department {
@@ -12,6 +16,9 @@ public class Department {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
     private String name;
+
+    @OneToMany(mappedBy = "department")
+    private Collection<Employee> employees;
 
     public Department() {
     }
@@ -32,9 +39,17 @@ public class Department {
         this.name = name;
     }
 
+    public Collection<Employee> getEmployees() {
+        return employees;
+    }
+
+    public void setEmployees(Collection<Employee> employees) {
+        this.employees = employees;
+    }
+
     @Override
     public String toString() {
-        return "entity.Department{" +
+        return "Department{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 '}';

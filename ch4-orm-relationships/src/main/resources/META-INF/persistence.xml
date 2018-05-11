@@ -5,6 +5,7 @@
     <persistence-unit name="persistenceUnit" transaction-type="RESOURCE_LOCAL">
         <class>entity.Employee</class>
         <class>entity.Department</class>
+        <class>entity.ParkingSpace</class>
         <properties>
             <property name="javax.persistence.jdbc.driver"
                       value="org.apache.derby.jdbc.EmbeddedDriver" />
