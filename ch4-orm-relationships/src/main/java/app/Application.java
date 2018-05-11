@@ -43,9 +43,9 @@ public class Application {
         // join Employee with Department and Parkingspace
         em.getTransaction().begin();
         employee.setDepartment(department);
+        department.getEmployees().add(employee);
         employee.setParkingSpace(parkingSpace);
         parkingSpace.setEmployee(employee);
-        department.getEmployees().add(employee);
         System.out.println("Updated Employee: " + employee);
         em.getTransaction().commit();
 
