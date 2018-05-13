@@ -1,8 +1,7 @@
 package repository;
 
-import entity.Department;
+import entity.Address;
 import entity.Employee;
-import entity.ParkingSpace;
 
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
@@ -15,24 +14,11 @@ public class EmployeeRepository {
         this.em = em;
     }
 
-    public Employee createAndSave(String name){
+    public Employee createAndSave(String name, Address address) {
         Employee employee = new Employee();
         employee.setName(name);
+        employee.setAddress(address);
         em.persist(employee);
-        return employee;
-    }
-
-    public Employee setDepartment(int employeeId, int departmentId){
-        Employee employee = em.find(Employee.class, employeeId);
-        Department department = em.find(Department.class, departmentId);
-        employee.setDepartment(department);
-        return employee;
-    }
-
-    public Employee setParkingSpace(int employeeId, int parkingSpaceId){
-        Employee employee = em.find(Employee.class, employeeId);
-        ParkingSpace parkingSpace = em.find(ParkingSpace.class, parkingSpaceId);
-        employee.setParkingSpace(parkingSpace);
         return employee;
     }
 

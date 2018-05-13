@@ -1,11 +1,7 @@
 package app;
 
-import entity.Department;
-import entity.Employee;
-import entity.ParkingSpace;
-import repository.DepartmentRepository;
-import repository.EmployeeRepository;
-import repository.ParkingSpaceRepository;
+import entity.*;
+import repository.*;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -21,10 +17,14 @@ public class Application {
         EmployeeRepository employeeRepository = new EmployeeRepository(em);
         DepartmentRepository departmentRepository = new DepartmentRepository(em);
         ParkingSpaceRepository parkingSpaceRepository = new ParkingSpaceRepository(em);
+        ProjectRepository projectRepository = new ProjectRepository(em);
+        PhoneRepository phoneRepository = new PhoneRepository(em);
+        CompanyRepository companyRepository = new CompanyRepository(em);
 
         // create Employee
         em.getTransaction().begin();
-        Employee employee = employeeRepository.createAndSave("John Doe");
+        Address address1 = new Address("1st Street", "Sydney", "35000");
+        Employee employee = employeeRepository.createAndSave("John Doe", address1);
         System.out.println("Created Employee: " + employee);
         em.getTransaction().commit();
 
@@ -40,12 +40,34 @@ public class Application {
         System.out.println("Created Parking Space: " + parkingSpace);
         em.getTransaction().commit();
 
-        // join Employee with Department and Parkingspace
+        // create Project
+        em.getTransaction().begin();
+        Project project = projectRepository.createAndSave("King of Tokyo");
+        System.out.println("Created Project: " + project);
+        em.getTransaction().commit();
+
+        // create Phone
+        em.getTransaction().begin();
+        Phone phone = phoneRepository.createAndSave("private", "0770010302");
+        System.out.println("Created Phone: " + phone);
+        em.getTransaction().commit();
+
+        // create Company
+        em.getTransaction().begin();
+        Address address2 = new Address("Main Street", "Melbourne", "50000");
+        Company company = companyRepository.createAndSave("UBS", address2);
+        System.out.println("Created Company: " + company);
+        em.getTransaction().commit();
+
+        // join Employee with Department, Parkingspace, Project
         em.getTransaction().begin();
         employee.setDepartment(department);
         department.getEmployees().add(employee);
         employee.setParkingSpace(parkingSpace);
         parkingSpace.setEmployee(employee);
+        employee.getProjects().add(project);
+        project.getEmployees().add(employee);
+        employee.getPhones().add(phone);
         System.out.println("Updated Employee: " + employee);
         em.getTransaction().commit();
 
@@ -60,5 +82,9 @@ public class Application {
         List<ParkingSpace> parkingSpaces = parkingSpaceRepository.findAll();
         System.out.println("Parking Spaces: " + parkingSpaces);
         System.out.println(parkingSpace.getEmployee());
+
+        List<Project> projects = projectRepository.findAll();
+        System.out.println("Projects: " + projects);
+        System.out.println(project.getEmployees());
     }
 }

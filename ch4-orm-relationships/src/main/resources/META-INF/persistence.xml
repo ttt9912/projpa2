@@ -6,6 +6,9 @@
         <class>entity.Employee</class>
         <class>entity.Department</class>
         <class>entity.ParkingSpace</class>
+        <class>entity.Project</class>
+        <class>entity.Phone</class>
+        <class>entity.Company</class>
         <properties>
             <property name="javax.persistence.jdbc.driver"
                       value="org.apache.derby.jdbc.EmbeddedDriver" />
