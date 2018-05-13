@@ -10,7 +10,6 @@
     <version>1.0-SNAPSHOT</version>
     <modules>
         <module>../ch2-gettingstarted</module>
-        <module>../ch3-enterprise</module>
         <module>../ch4-orm-relationships</module>
         <module>../ch4-orm-entitybasics</module>
     </modules>
