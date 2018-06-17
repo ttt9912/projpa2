@@ -14,6 +14,7 @@
         <module>../ch4-orm-entitybasics</module>
         <module>../ch5-collection-mapping</module>
         <module>../new-module-template</module>
+        <module>../ch5-different-collection-types</module>
     </modules>
 
     <dependencies>

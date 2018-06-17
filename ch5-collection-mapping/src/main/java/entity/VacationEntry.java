@@ -1,4 +1,4 @@
-package p1_element_collections.entity;
+package entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

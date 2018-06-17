@@ -12,6 +12,7 @@
         <module name="ch4-orm-entitybasics" />
         <module name="ch4-orm-relationships" />
         <module name="ch5-collection-mapping" />
+        <module name="ch5-different-collection-types" />
         <module name="new-module-template" />
       </profile>
     </annotationProcessing>
@@ -23,6 +24,7 @@
       <module name="ch4-orm-relationships" target="1.8" />
       <module name="ch5-collection-mapping" target="1.5" />
       <module name="ch5-collectionmapping" target="1.5" />
+      <module name="ch5-different-collection-types" target="1.5" />
       <module name="ch99-template" target="1.5" />
       <module name="new-module-template" target="1.5" />
       <module name="parent" target="1.5" />

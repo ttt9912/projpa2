@@ -1,7 +1,7 @@
-package p1_element_collections.repository;
+package repository;
 
-import p1_element_collections.entity.Address;
-import p1_element_collections.entity.Company;
+import entity.Address;
+import entity.Company;
 
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;

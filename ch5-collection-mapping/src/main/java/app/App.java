@@ -1,8 +1,8 @@
-package p1_element_collections.app;
+package app;
 
-import p1_element_collections.entity.Employee;
-import p1_element_collections.entity.VacationEntry;
-import p1_element_collections.repository.EmployeeRepository;
+import entity.Employee;
+import entity.VacationEntry;
+import repository.EmployeeRepository;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -12,7 +12,7 @@ import java.util.*;
 public class App {
 
     public static void main(String[] args) {
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("persistenceUnit1");
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("persistenceUnit");
         EntityManager em = emf.createEntityManager();
 
         EmployeeRepository employeeRepository = new EmployeeRepository(em);

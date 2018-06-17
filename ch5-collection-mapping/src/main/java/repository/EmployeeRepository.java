@@ -1,10 +1,11 @@
-package p1_element_collections.repository;
+package repository;
 
-import p1_element_collections.entity.Address;
-import p1_element_collections.entity.Employee;
+import entity.Employee;
+import entity.VacationEntry;
 
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
+import java.util.Collection;
 import java.util.List;
 
 public class EmployeeRepository {
@@ -14,15 +15,16 @@ public class EmployeeRepository {
         this.em = em;
     }
 
-    public Employee createAndSave(String name, Address address) {
+    public Employee createAndSave(String name, Collection<VacationEntry> vacationBookings, Collection<String> nickNames) {
         Employee employee = new Employee();
         employee.setName(name);
-        employee.setAddress(address);
+        employee.setVacationBookings(vacationBookings);
+        employee.setNickNames(nickNames);
         em.persist(employee);
         return employee;
     }
 
-    public List<Employee> findAll(){
+    public List<Employee> findAll() {
         TypedQuery<Employee> query = em.createQuery("SELECT e FROM Employee e", Employee.class);
         return query.getResultList();
     }
