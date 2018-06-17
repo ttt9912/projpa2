@@ -38,6 +38,10 @@ ____Pro JPA 2____
 - Package Names -
 	ch2.apps, ch2.shared, etc.
 	chapter.<anything short>
+
+- Dependencies -
+   - parent pom: main dependencies
+   - module pom: additional dependencies
 __________________________________________________________________________
 
 Comments:
@@ -48,3 +52,5 @@ Comments:
    - delete src folder in parent module
 
    - use package names with chapter name for non confusing imports
+
+

@@ -1,7 +1,6 @@
-package repository;
+package p1_element_collections.repository;
 
-import entity.Employee;
-import entity.ParkingSpace;
+import p1_element_collections.entity.ParkingSpace;
 
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;

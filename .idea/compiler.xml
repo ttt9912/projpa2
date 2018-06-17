@@ -7,16 +7,19 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="ch-5collectionmapping" />
         <module name="ch2-gettingstarted" />
         <module name="ch4-orm-entitybasics" />
         <module name="ch4-orm-relationships" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel target="1.8">
+      <module name="ch-5collectionmapping" target="1.5" />
       <module name="ch2-gettingstarted" target="1.5" />
       <module name="ch3-enterprise" target="1.5" />
       <module name="ch4-orm-entitybasics" target="1.5" />
       <module name="ch4-orm-relationships" target="1.8" />
+      <module name="ch5-collectionmapping" target="1.5" />
       <module name="parent" target="1.5" />
     </bytecodeTargetLevel>
   </component>

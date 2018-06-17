@@ -1,20 +1,25 @@
-package entity;
+package p1_element_collections.entity;
 
 import javax.persistence.*;
 import java.util.Collection;
 
+/*
+ * @OneToMany ist die 1-seite der Beziehung. Also die nicht-owner Seite,
+ * die nicht den FK besitzt.
+ */
+
 @Entity
-public class Project {
+public class Department {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
     private String name;
 
-    @ManyToMany(mappedBy = "projects")
+    @OneToMany(mappedBy = "department")
     private Collection<Employee> employees;
 
-    public Project() {
+    public Department() {
     }
 
     public int getId() {
@@ -43,7 +48,7 @@ public class Project {
 
     @Override
     public String toString() {
-        return "Project{" +
+        return "Department{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 '}';

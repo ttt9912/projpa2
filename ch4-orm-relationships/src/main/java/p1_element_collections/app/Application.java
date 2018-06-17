@@ -1,7 +1,7 @@
-package app;
+package p1_element_collections.app;
 
-import entity.*;
-import repository.*;
+import p1_element_collections.entity.*;
+import p1_element_collections.repository.*;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;

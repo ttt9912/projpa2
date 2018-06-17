@@ -1,6 +1,6 @@
-package repository;
+package p1_element_collections.repository;
 
-import entity.Phone;
+import p1_element_collections.entity.Phone;
 
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;

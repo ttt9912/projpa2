@@ -1,6 +1,6 @@
-package repository;
+package p1_element_collections.repository;
 
-import entity.Project;
+import p1_element_collections.entity.Project;
 
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;

@@ -1,6 +1,6 @@
-package repository;
+package p1_element_collections.repository;
 
-import entity.Department;
+import p1_element_collections.entity.Department;
 
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;

@@ -1,4 +1,4 @@
-package entity;
+package p1_element_collections.entity;
 
 import javax.persistence.*;
 
