@@ -10,6 +10,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>ch5-collectionmapping</artifactId>
+    <artifactId>new-module-template</artifactId>
+
 
 </project>

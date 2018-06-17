@@ -9,6 +9,8 @@
     <option name="ignoredFiles">
       <set>
         <option value="$PROJECT_DIR$/ch4-orm/pom.xml" />
+        <option value="$PROJECT_DIR$/ch5-collectionmapping/pom.xml" />
+        <option value="$PROJECT_DIR$/ch99-template/pom.xml" />
       </set>
     </option>
   </component>

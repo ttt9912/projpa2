@@ -2,10 +2,11 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/ch-5collectionmapping/ch-5collectionmapping.iml" filepath="$PROJECT_DIR$/ch-5collectionmapping/ch-5collectionmapping.iml" />
       <module fileurl="file://$PROJECT_DIR$/ch2-gettingstarted/ch2-gettingstarted.iml" filepath="$PROJECT_DIR$/ch2-gettingstarted/ch2-gettingstarted.iml" />
       <module fileurl="file://$PROJECT_DIR$/ch4-orm-entitybasics/ch4-orm-entitybasics.iml" filepath="$PROJECT_DIR$/ch4-orm-entitybasics/ch4-orm-entitybasics.iml" />
       <module fileurl="file://$PROJECT_DIR$/ch4-orm-relationships/ch4-orm-relationships.iml" filepath="$PROJECT_DIR$/ch4-orm-relationships/ch4-orm-relationships.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ch5-collection-mapping/ch5-collection-mapping.iml" filepath="$PROJECT_DIR$/ch5-collection-mapping/ch5-collection-mapping.iml" />
+      <module fileurl="file://$PROJECT_DIR$/new-module-template/new-module-template.iml" filepath="$PROJECT_DIR$/new-module-template/new-module-template.iml" />
       <module fileurl="file://$PROJECT_DIR$/parent/parent.iml" filepath="$PROJECT_DIR$/parent/parent.iml" />
     </modules>
   </component>

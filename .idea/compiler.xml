@@ -11,6 +11,8 @@
         <module name="ch2-gettingstarted" />
         <module name="ch4-orm-entitybasics" />
         <module name="ch4-orm-relationships" />
+        <module name="ch5-collection-mapping" />
+        <module name="new-module-template" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel target="1.8">
@@ -19,7 +21,10 @@
       <module name="ch3-enterprise" target="1.5" />
       <module name="ch4-orm-entitybasics" target="1.5" />
       <module name="ch4-orm-relationships" target="1.8" />
+      <module name="ch5-collection-mapping" target="1.5" />
       <module name="ch5-collectionmapping" target="1.5" />
+      <module name="ch99-template" target="1.5" />
+      <module name="new-module-template" target="1.5" />
       <module name="parent" target="1.5" />
     </bytecodeTargetLevel>
   </component>

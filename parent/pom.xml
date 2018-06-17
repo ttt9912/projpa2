@@ -12,7 +12,8 @@
         <module>../ch2-gettingstarted</module>
         <module>../ch4-orm-relationships</module>
         <module>../ch4-orm-entitybasics</module>
-        <module>../ch-5collectionmapping</module>
+        <module>../ch5-collection-mapping</module>
+        <module>../new-module-template</module>
     </modules>
 
     <dependencies>
