@@ -3,12 +3,12 @@
              xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd"
              version="2.0" xmlns="http://java.sun.com/xml/ns/persistence">
     <persistence-unit name="persistenceUnit" transaction-type="RESOURCE_LOCAL">
-        <class>entity.Employee</class>
-        <class>entity.Department</class>
-        <class>entity.ParkingSpace</class>
-        <class>entity.Project</class>
-        <class>entity.Phone</class>
-        <class>entity.Company</class>
+        <class>p1_ordering.entity.Employee</class>
+        <class>p1_ordering.entity.Department</class>
+        <class>p1_ordering.entity.ParkingSpace</class>
+        <class>p1_ordering.entity.Project</class>
+        <class>p1_ordering.entity.Phone</class>
+        <class>p1_ordering.entity.Company</class>
         <properties>
             <property name="javax.persistence.jdbc.driver"
                       value="org.apache.derby.jdbc.EmbeddedDriver" />
