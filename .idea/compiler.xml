@@ -11,23 +11,20 @@
         <module name="ch2-gettingstarted" />
         <module name="ch4-orm-entitybasics" />
         <module name="ch4-orm-relationships" />
-        <module name="ch5-collection-mapping" />
         <module name="ch5-different-collection-types" />
+        <module name="common" />
         <module name="new-module-template" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel target="1.8">
-      <module name="ch-5collectionmapping" target="1.5" />
-      <module name="ch2-gettingstarted" target="1.5" />
-      <module name="ch3-enterprise" target="1.5" />
-      <module name="ch4-orm-entitybasics" target="1.5" />
+      <module name="ch2-gettingstarted" target="1.8" />
+      <module name="ch4-orm-entitybasics" target="1.8" />
       <module name="ch4-orm-relationships" target="1.8" />
-      <module name="ch5-collection-mapping" target="1.5" />
-      <module name="ch5-collectionmapping" target="1.5" />
-      <module name="ch5-different-collection-types" target="1.5" />
-      <module name="ch99-template" target="1.5" />
-      <module name="new-module-template" target="1.5" />
-      <module name="parent" target="1.5" />
+      <module name="ch5-collection-mapping" target="1.8" />
+      <module name="ch5-different-collection-types" target="1.8" />
+      <module name="common" target="1.8" />
+      <module name="new-module-template" target="1.8" />
+      <module name="parent" target="1.8" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">

@@ -36,6 +36,7 @@ public class App {
 
     private static Collection<VacationEntry> createVacationBookings() {
         return Arrays.asList(
+                createVacationEntry(new GregorianCalendar(2019, 10, 31), 5),
                 createVacationEntry(new GregorianCalendar(2017, 0, 31), 30),
                 createVacationEntry(new GregorianCalendar(2018, 7, 5), 14)
         );
