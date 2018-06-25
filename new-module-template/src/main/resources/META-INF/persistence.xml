@@ -5,7 +5,7 @@
     <!-- TODO: define PU name -->
     <persistence-unit name="persistenceUnit" transaction-type="RESOURCE_LOCAL">
         <!-- TODO: list @Entity classes
-        <class>p1_ordering.entity.Employee</class> -->
+        <class>entity.Employee</class> -->
         <properties>
             <property name="javax.persistence.jdbc.driver"
                       value="org.apache.derby.jdbc.EmbeddedDriver"/>
