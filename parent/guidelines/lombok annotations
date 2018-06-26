@@ -1,0 +1,11 @@
+---------------------------------------------------------
+On @Entity
+---------------------------------------------------------
+standard:
+    @Getter
+    @Setter
+
+optional:
+    @AllArgsConstructor
+    @NoArgsConstructor
+    @ToString

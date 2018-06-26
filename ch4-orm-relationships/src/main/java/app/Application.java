@@ -6,6 +6,7 @@ import repository.*;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import java.util.Arrays;
 import java.util.List;
 
 public class Application {
@@ -20,6 +21,7 @@ public class Application {
         ProjectRepository projectRepository = new ProjectRepository(em);
         PhoneRepository phoneRepository = new PhoneRepository(em);
         CompanyRepository companyRepository = new CompanyRepository(em);
+        BadgeRepository badgeRepository = new BadgeRepository(em);
 
         // create Employee
         em.getTransaction().begin();
@@ -59,6 +61,12 @@ public class Application {
         System.out.println("Created Company: " + company);
         em.getTransaction().commit();
 
+        // create Badge (unidirectional OneToMany without jointable)
+        em.getTransaction().begin();
+        Badge badge = badgeRepository.createAndSave("HQ");
+        System.out.println("Created Badge: " + badge);
+        em.getTransaction().commit();
+
         // join Employee with Department, Parkingspace, Project
         em.getTransaction().begin();
         employee.setDepartment(department);
@@ -68,6 +76,7 @@ public class Application {
         employee.getProjects().add(project);
         project.getEmployees().add(employee);
         employee.getPhones().add(phone);
+        employee.getBadges().add(badge);
         System.out.println("Updated Employee: " + employee);
         em.getTransaction().commit();
 

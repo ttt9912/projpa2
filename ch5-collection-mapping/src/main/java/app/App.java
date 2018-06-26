@@ -20,6 +20,7 @@ public class App {
         EmployeeRepository employeeRepository = new EmployeeRepository(em);
         DepartmentRepository departmentRepository = new DepartmentRepository(em);
 
+
         System.out.println("\n--- Element Collections ---");
 
         em.getTransaction().begin();
@@ -34,6 +35,7 @@ public class App {
         PrinterRepository printerRepository = new PrinterRepository(em);
         PrinterQueueRepository printerQueueRepository = new PrinterQueueRepository(em);
         PrintJobRepository printJobRepository = new PrintJobRepository(em);
+
 
         System.out.println("\n--- Ordering ---");
 
@@ -60,6 +62,8 @@ public class App {
 
         System.out.println(printerQueue);
 
+
+        System.out.println("\n--- Maps ---");
 
         // Maps with basic type key (element collection); value = basic type
         Map<String, String> phoneNumbers = createPhoneNumbersMap();
@@ -115,6 +119,25 @@ public class App {
         System.out.println("Department1: " + dept1);
         System.out.println("Department2: " + dept2);
 
+        // Map with Entity key
+        em.getTransaction().begin();
+
+        Employee empl1 = new Employee("John");
+        Employee empl2 = new Employee("Paul");
+        employeeRepository.createAndSaveAll(Arrays.asList(empl1, empl2));
+
+        Map<Employee, Integer> employeesWithSeniority = new HashMap<>();
+        employeesWithSeniority.put(empl1, 2);
+        employeesWithSeniority.put(empl2, 3);
+
+        Department department = departmentRepository.createAndSave(new Department("Department A"));
+        department.setEmployeesWithSeniority(employeesWithSeniority);
+
+        em.getTransaction().commit();
+
+        departmentRepository.findAll(Department.class).stream()
+                .forEach(d -> System.out.println("Department: " + d.getDepartmentName()
+                        + ", Employees by Seniority: " + d.getEmployeesWithSeniority()));
     }
 
     private static Map<String, String> createPhoneNumbersMap() {

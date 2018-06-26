@@ -2,6 +2,8 @@ package entity;
 
 import embeddable.Color;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.Collection;
@@ -15,7 +17,8 @@ import java.util.List;
  * Therefore, the drop-and-create-tables property has to be removed from the persistence.xml.
  */
 
-@Data
+@Getter
+@Setter
 @Entity
 public class Printer {
     @Id

@@ -1,11 +1,14 @@
 package entity;
 
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.Map;
 
-@Data
+@Getter
+@Setter
 @Entity
 public class Department {
 
@@ -25,6 +28,12 @@ public class Department {
     @OneToMany(mappedBy = "department")
     @MapKey(name = "id")
     private Map<Integer, Employee> employeesById;
+
+    @ElementCollection
+    @CollectionTable(name = "EMP_SENIORITY")
+    @MapKeyJoinColumn(name = "EMP_ID")
+    @Column(name = "SENIORITY")
+    private Map<Employee, Integer> employeesWithSeniority;
 
     public Department() {
     }

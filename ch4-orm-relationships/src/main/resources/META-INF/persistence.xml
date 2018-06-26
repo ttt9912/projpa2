@@ -8,6 +8,7 @@
         <class>entity.ParkingSpace</class>
         <class>entity.Project</class>
         <class>entity.Phone</class>
+        <class>entity.Badge</class>
         <class>entity.Company</class>
         <properties>
             <property name="javax.persistence.jdbc.driver"

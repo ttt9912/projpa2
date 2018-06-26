@@ -2,6 +2,8 @@ package entity;
 
 import embeddable.VacationEntry;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.Collection;
@@ -25,7 +27,8 @@ import java.util.stream.Collectors;
  * Maps:
  * @MapKeyColumn: name der column, die den basic type key speichert
  */
-@Data
+@Getter
+@Setter
 @Entity
 public class Employee {
     @Id

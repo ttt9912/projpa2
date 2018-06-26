@@ -16,7 +16,7 @@ public class Department {
     private int id;
     private String name;
 
-    @OneToMany(mappedBy = "departments")
+    @OneToMany(mappedBy = "department")
     private Collection<Employee> employees;
 
     public Department() {

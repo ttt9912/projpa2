@@ -2,6 +2,7 @@ package entity;
 
 import javax.persistence.*;
 import java.util.Collection;
+import java.util.List;
 
 /*
  * @ManyToOne: dies ist die n-Seite der Beziehung, die einen FK besitst (owner)
@@ -44,6 +45,10 @@ public class Employee {
 
     @Embedded
     private Address address;
+
+    @OneToMany
+    @JoinColumn(name = "EMPLOYEE_ID")
+    private List<Badge> badges;
 
     public Employee() {
     }
@@ -96,6 +101,14 @@ public class Employee {
         this.phones = phones;
     }
 
+    public List<Badge> getBadges() {
+        return badges;
+    }
+
+    public void setBadges(final List<Badge> badges) {
+        this.badges = badges;
+    }
+
     public Address getAddress() {
         return address;
     }
@@ -113,6 +126,7 @@ public class Employee {
                 ", parkingSpace=" + parkingSpace +
                 ", projects=" + projects +
                 ", phones=" + phones +
+                ", badges=" + badges +
                 ", name=" + address +
                 '}';
     }
