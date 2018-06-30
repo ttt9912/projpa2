@@ -1,0 +1,9 @@
+-----------------------------------------------------------------------------
+.gitignore
+-----------------------------------------------------------------------------
+.gitignore is outside parent on top level (e.g. workspace/projpa2/.gitignore)
+
+refresh git after modifying .gitignore:
+    git rm -r --cached .
+    git add .
+    commit
