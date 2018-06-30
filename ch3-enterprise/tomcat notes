@@ -1,0 +1,16 @@
+- Packaging must be WAR
+    <packaging>war</packaging>
+
+- Maven WAR Plugin
+- Maven Tomcat Plugin
+
+- web.xml required
+- add <webXml> to WAR Plugin config
+
+
+---------------------------------------------------------
+run tomcat
+---------------------------------------------------------
+mvn tomcat7:run
+
+can be added as maven goal to the run config.
