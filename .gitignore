@@ -7,6 +7,3 @@ databases/
 # Maven
 log/
 target/
-
-# Various
-ch2-gettingstarted\derby.log
