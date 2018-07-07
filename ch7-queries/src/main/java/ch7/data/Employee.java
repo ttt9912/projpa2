@@ -13,10 +13,11 @@ import java.util.List;
 
 @Getter
 @Setter
-@ToString(exclude = "department")
+@ToString(exclude = {"department", "phones"})
 @Entity
 public class Employee extends BaseEntity {
     private String name;
+    private long salary;
 
     @ManyToOne
     private Department department;

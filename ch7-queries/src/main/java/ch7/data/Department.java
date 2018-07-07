@@ -11,7 +11,7 @@ import java.util.List;
 
 @Getter
 @Setter
-@ToString
+@ToString(exclude = "employees")
 @Entity
 public class Department extends BaseEntity {
     private String name;

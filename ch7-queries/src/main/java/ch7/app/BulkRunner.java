@@ -37,16 +37,17 @@ public final class BulkRunner {
 
     private List<Employee> createDefaultEmployees(final Department department) {
         final List<Employee> employees = Arrays.asList(
-                createDefaultEmployee("John", department),
-                createDefaultEmployee("Paul", department)
+                createDefaultEmployee("John", 50000, department),
+                createDefaultEmployee("Paul", 65000, department)
         );
         return employees;
     }
 
-    private Employee createDefaultEmployee(final String name, final Department department) {
+    private Employee createDefaultEmployee(final String name, final int salary, final Department department) {
         List<Phone> phones = phoneRepository.createAndSaveAll(createDefaultPhones());
         final Employee employee = new Employee();
         employee.setName(name);
+        employee.setSalary(salary);
         employee.setDepartment(department);
         employee.setPhones(phones);
         return employee;
