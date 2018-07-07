@@ -8,12 +8,12 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="ch-5collectionmapping" />
-        <module name="ch3-enterprise" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel target="1.8">
       <module name="ch2-gettingstarted" target="1.8" />
       <module name="ch3-enterprise" target="1.8" />
+      <module name="ch3-springboot" target="1.8" />
       <module name="ch4-orm-entitybasics" target="1.8" />
       <module name="ch4-orm-relationships" target="1.8" />
       <module name="ch5-collection-mapping" target="1.8" />

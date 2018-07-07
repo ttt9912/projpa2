@@ -10,7 +10,6 @@
 
     <modules>
         <module>../ch2-gettingstarted</module>
-        <module>../ch3-enterprise</module>
         <module>../ch4-orm-relationships</module>
         <module>../ch4-orm-entitybasics</module>
         <module>../ch5-collection-mapping</module>

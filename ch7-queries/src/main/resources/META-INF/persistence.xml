@@ -5,10 +5,10 @@
     <persistence-unit name="persistenceUnit" transaction-type="RESOURCE_LOCAL">
         <class>ch7.data.Employee</class>
         <class>ch7.data.Department</class>
+        <class>ch7.data.Phone</class>
         <properties>
             <property name="javax.persistence.jdbc.driver"
                       value="org.apache.derby.jdbc.EmbeddedDriver"/>
-            <!-- TODO: define DB -->
             <property name="javax.persistence.jdbc.url"
                       value="jdbc:derby:databases/ch7EmployeeDb;create=true"/>
             <property name="javax.persistence.jdbc.user" value=""/>

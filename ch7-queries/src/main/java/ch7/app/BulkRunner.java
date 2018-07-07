@@ -1,4 +1,6 @@
-package ch7.data;
+package ch7.app;
+
+import ch7.data.*;
 
 import javax.persistence.EntityManager;
 import java.util.Arrays;
@@ -7,7 +9,6 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public final class BulkRunner {
-
     // todo: DI
     private final EmployeeRepository employeeRepository;
     private final DepartmentRepository departmentRepository;
@@ -43,10 +44,11 @@ public final class BulkRunner {
     }
 
     private Employee createDefaultEmployee(final String name, final Department department) {
+        List<Phone> phones = phoneRepository.createAndSaveAll(createDefaultPhones());
         final Employee employee = new Employee();
         employee.setName(name);
         employee.setDepartment(department);
-        employee.setPhones(createDefaultPhones());
+        employee.setPhones(phones);
         return employee;
     }
 
