@@ -5,8 +5,8 @@
     <persistence-unit name="persistenceUnit" transaction-type="RESOURCE_LOCAL">
         <class>entity.Employee</class>
         <class>entity.Department</class>
-        <class>entity.Printer</class>
         <class>entity.PrinterQueue</class>
+        <class>entity.Printer</class>
         <class>entity.PrintJob</class>
         <properties>
             <property name="javax.persistence.jdbc.driver"

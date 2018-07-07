@@ -4,8 +4,8 @@ On @Entity
 standard:
     @Getter
     @Setter
+    @ToString(exclude = "")
 
 optional:
     @AllArgsConstructor
     @NoArgsConstructor
-    @ToString

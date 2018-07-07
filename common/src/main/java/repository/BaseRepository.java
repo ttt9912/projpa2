@@ -12,7 +12,9 @@ public class BaseRepository<E> {
     }
 
     public E createAndSave(E entity) {
+        em.getTransaction().begin();
         em.persist(entity);
+        em.getTransaction().commit();
         return entity;
     }
 

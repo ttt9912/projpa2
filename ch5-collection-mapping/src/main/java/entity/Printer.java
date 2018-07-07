@@ -1,7 +1,6 @@
 package entity;
 
 import embeddable.Color;
-import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 

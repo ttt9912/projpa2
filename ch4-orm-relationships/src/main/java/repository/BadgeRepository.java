@@ -1,8 +1,6 @@
 package repository;
 
-import entity.Address;
 import entity.Badge;
-import entity.Company;
 
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;

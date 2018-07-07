@@ -12,17 +12,5 @@
 
     <artifactId>ch5-collection-mapping</artifactId>
     <packaging>pom</packaging>
-    <dependencies>
-        <dependency>
-            <groupId>ch.ttt</groupId>
-            <artifactId>common</artifactId>
-            <version>${common.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.junit.jupiter</groupId>
-            <artifactId>junit-jupiter-api</artifactId>
-            <version>5.1.0-RC1</version>
-        </dependency>
-    </dependencies>
 
 </project>

@@ -31,7 +31,7 @@ public class App {
         employeeRepository.createAndSave(employee); // employee is managed from now
         em.getTransaction().commit();
 
-        // ordering collections (only works with reload from db in a new app run)
+        // ordering collections (only works with reload from db in a new app_n run)
         PrinterRepository printerRepository = new PrinterRepository(em);
         PrinterQueueRepository printerQueueRepository = new PrinterQueueRepository(em);
         PrintJobRepository printJobRepository = new PrintJobRepository(em);
@@ -78,7 +78,7 @@ public class App {
         System.out.println(allDepartments);
 
 
-        // Map with basic type key (OneToMany relationship); value = entity
+        // Map with basic type key (OneToMany relationship); value = entity_n
 //        em.getTransaction().begin();
 //        Employee emp1 = new Employee();
 //        emp1.setName("John");
@@ -94,7 +94,7 @@ public class App {
 //        em.getTransaction().commit();
 //        System.out.println(departments);
 
-        // Map with basic type key (ManyToMany relationship); value = entity
+        // Map with basic type key (ManyToMany relationship); value = entity_n
         em.getTransaction().begin();
 
         Employee emp1 = new Employee("John");
