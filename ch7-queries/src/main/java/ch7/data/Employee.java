@@ -5,16 +5,23 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
-import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import java.util.List;
+
+/*
+ * Named Queries improve performance
+ *
+ * @NamedQuery(name, query)
+ * @NamedQueries for more than one @NamedQuery for an Entity
+ */
 
 @Getter
 @Setter
 @ToString(exclude = {"department", "phones"})
 @Entity
+@NamedQuery(name = "Employee.findByName",
+        query = "SELECT e FROM Employee e " +
+                "WHERE e.name = :empName")
 public class Employee extends BaseEntity {
     private String name;
     private long salary;

@@ -5,6 +5,10 @@ import ch7.data.Employee;
 import javax.persistence.EntityManager;
 import java.util.List;
 
+/*
+ * JPQL: query against application model instead of tables
+ * Dynamic Query: pass a query String to the createQuery() Method
+ */
 public class QueryServiceJPQL {
 
     private final EntityManager em;
@@ -53,8 +57,26 @@ public class QueryServiceJPQL {
                 .getResultList();
     }
 
+    // ---------------------------------------------------------
+    // Dynamic Queries
+    // ---------------------------------------------------------
+
     // Parametrizing with '?'
     public Employee findByDepartmentAndEmployee(final String deptName, final String empName) {
+        String queryString = "SELECT e " +
+                "FROM  Employee e " +
+                "WHERE e.department.name = ?1 " +
+                "AND e.name = ?2";
+
+
+        return em.createQuery(queryString, Employee.class)
+                .setParameter(1, deptName)
+                .setParameter(2, empName)
+                .getSingleResult();
+    }
+
+    // Parametrizing with ':param'
+    public Employee findByDepartmentAndEmployee2(final String deptName, final String empName) {
         String queryString = "SELECT e " +
                 "FROM  Employee e " +
                 "WHERE e.department.name = :deptName " +
@@ -67,7 +89,5 @@ public class QueryServiceJPQL {
                 .getSingleResult();
     }
 
-
-    // Parametrizing with ':param'
 
 }
