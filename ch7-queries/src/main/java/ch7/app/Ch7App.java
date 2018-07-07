@@ -10,6 +10,7 @@ import javax.persistence.TypedQuery;
 import java.util.Arrays;
 import java.util.stream.Collectors;
 
+@SuppressWarnings("JpaQueryApiInspection")
 public class Ch7App {
 
     public static void main(String[] arg) {
