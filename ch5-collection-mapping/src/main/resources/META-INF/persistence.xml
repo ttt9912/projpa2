@@ -3,11 +3,11 @@
              xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd"
              version="2.0" xmlns="http://java.sun.com/xml/ns/persistence">
     <persistence-unit name="persistenceUnit" transaction-type="RESOURCE_LOCAL">
-        <class>entity.Employee</class>
-        <class>entity.Department</class>
-        <class>entity.PrinterQueue</class>
-        <class>entity.Printer</class>
-        <class>entity.PrintJob</class>
+        <class>ch5.entity.Employee</class>
+        <class>ch5.entity.Department</class>
+        <class>ch5.entity.PrinterQueue</class>
+        <class>ch5.entity.Printer</class>
+        <class>ch5.entity.PrintJob</class>
         <properties>
             <property name="javax.persistence.jdbc.driver"
                       value="org.apache.derby.jdbc.EmbeddedDriver"/>

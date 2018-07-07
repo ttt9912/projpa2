@@ -18,6 +18,8 @@ ___Pro Spring 5____
 	ch2.apps, ch2.shared, etc.
 	chapter.<anything short>
 
+	Keine 2 packages dürfen gleich heissen! Auch nicht in unterschiedlichen Modulen
+
 
 ____Pro JPA 2____
 
@@ -38,6 +40,8 @@ ____Pro JPA 2____
 - Package Names -
 	ch2.apps, ch2.shared, etc.
 	chapter.<anything short>
+
+	Keine 2 packages dürfen gleich heissen! Auch nicht in unterschiedlichen Modulen
 
 - Dependencies -
    - parent pom: main dependencies
