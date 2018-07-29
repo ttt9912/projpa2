@@ -3,7 +3,7 @@
              xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd"
              version="2.0" xmlns="http://java.sun.com/xml/ns/persistence">
     <persistence-unit name="persistenceUnit" transaction-type="RESOURCE_LOCAL">
-        <class>ch4.relationships.Employee</class>
+        <class>ch4.relationships.entity.Employee</class>
         <class>ch4.relationships.entity.Department</class>
         <class>ch4.relationships.entity.ParkingSpace</class>
         <class>ch4.relationships.entity.Project</class>
