@@ -10,7 +10,6 @@
         <relativePath>../parent/pom.xml</relativePath>
     </parent>
     <artifactId>ch7-queries</artifactId>
-    <packaging>pom</packaging>
 
     <dependencies>
         <dependency>
