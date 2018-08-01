@@ -2,7 +2,9 @@ package common.repository;
 
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class BaseRepository<E> {
     private EntityManager em;
@@ -20,12 +22,19 @@ public class BaseRepository<E> {
             em.getTransaction().commit();
         }
 
+        System.out.println("[BaseRepository] Persisted Entity: " + entity);
+
         return entity;
     }
 
     public List<E> createAndSaveAll(List<E> entities) {
-        entities.forEach(this::createAndSave);
-        return entities;
+        return entities.stream()
+                .map(this::createAndSave)
+                .collect(Collectors.toList());
+    }
+
+    public List<E> createAndSaveAll(E... entities) {
+        return createAndSaveAll(Arrays.asList(entities));
     }
 
     public E findById(Class<E> clazz, int id) {
