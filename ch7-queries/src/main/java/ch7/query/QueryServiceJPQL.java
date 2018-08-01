@@ -1,5 +1,6 @@
 package ch7.query;
 
+import ch7.entity.Department;
 import ch7.entity.Employee;
 
 import javax.persistence.EntityManager;
@@ -16,6 +17,10 @@ public class QueryServiceJPQL {
     public QueryServiceJPQL(final EntityManager em) {
         this.em = em;
     }
+
+    // ---------------------------------------------------------
+    // Static Queries
+    // ---------------------------------------------------------
 
     // Query: untyped
     public List findEmployeeNames() {
@@ -89,5 +94,17 @@ public class QueryServiceJPQL {
                 .getSingleResult();
     }
 
+    // ---------------------------------------------------------
+    // Dynamic Queries with typed parameters
+    // ---------------------------------------------------------
+    public List<Employee> findEmployeesByDepartment(Department department) {
+        final String queryStirng = "SELECT e " +
+                "FROM  Employee e " +
+                "WHERE e.department = :dept";
+
+        return em.createQuery(queryStirng, Employee.class)
+                .setParameter("dept", department)
+                .getResultList();
+    }
 
 }

@@ -1,5 +1,7 @@
 package ch7.app;
 
+import ch7.entity.Department;
+import ch7.entity.DepartmentRepository;
 import ch7.entity.Employee;
 import ch7.query.QueryServiceJPQL;
 import org.junit.jupiter.api.BeforeAll;
@@ -26,7 +28,7 @@ class Ch7App {
 
 
     @Test
-    void jpql_queries() {
+    void jpql_basic_queries() {
         System.out.println("JPQL Query 1:\t" + queryService.findEmployeeNames());
         System.out.println("JPQL Query 2:\t" + queryService.findEmployeeNamesTypeSafe());
         System.out.println("JPQL Query 3:\t" + queryService.findFilteredEmployees());
@@ -82,6 +84,14 @@ class Ch7App {
                 .getSingleResult();
 
         System.out.println("Dynamic Named Query 1:\t" + res);
+    }
+
+    @Test
+    void with_typed_parameters() {
+        final DepartmentRepository departmentRepository = new DepartmentRepository(em);
+        final Department department = departmentRepository.findByName("Dept-1a");
+
+        System.out.println(queryService.findEmployeesByDepartment(department));
     }
 
 }

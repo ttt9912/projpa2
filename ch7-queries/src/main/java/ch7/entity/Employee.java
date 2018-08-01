@@ -32,4 +32,6 @@ public class Employee extends BaseEntity {
     @OneToMany
     @JoinColumn(name = "EMPL_ID")
     private List<Phone> phones;
+
+
 }

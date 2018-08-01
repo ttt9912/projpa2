@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class BaseRepository<E> {
-    private EntityManager em;
+    protected EntityManager em;
 
     public BaseRepository(EntityManager em) {
         this.em = em;
