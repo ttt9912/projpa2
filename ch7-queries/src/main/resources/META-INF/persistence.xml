@@ -3,9 +3,9 @@
              xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd"
              version="2.0" xmlns="http://java.sun.com/xml/ns/persistence">
     <persistence-unit name="persistenceUnit" transaction-type="RESOURCE_LOCAL">
-        <class>ch7.data.Employee</class>
-        <class>ch7.data.Department</class>
-        <class>ch7.data.Phone</class>
+        <class>ch7.entity.Employee</class>
+        <class>ch7.entity.Department</class>
+        <class>ch7.entity.Phone</class>
         <properties>
             <property name="javax.persistence.jdbc.driver"
                       value="org.apache.derby.jdbc.EmbeddedDriver"/>

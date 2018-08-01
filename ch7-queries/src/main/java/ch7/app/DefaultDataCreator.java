@@ -1,6 +1,6 @@
 package ch7.app;
 
-import ch7.data.*;
+import ch7.entity.*;
 
 import javax.persistence.EntityManager;
 import java.util.Arrays;

@@ -1,6 +1,6 @@
 package ch7.app;
 
-import ch7.data.Employee;
+import ch7.entity.Employee;
 import ch7.query.QueryServiceJPQL;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;

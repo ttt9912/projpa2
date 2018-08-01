@@ -1,6 +1,6 @@
 package ch7.query;
 
-import ch7.data.Employee;
+import ch7.entity.Employee;
 
 import javax.persistence.EntityManager;
 import java.util.List;

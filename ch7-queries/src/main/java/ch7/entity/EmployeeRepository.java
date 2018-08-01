@@ -1,4 +1,4 @@
-package ch7.data;
+package ch7.entity;
 
 import common.repository.BaseRepository;
 
