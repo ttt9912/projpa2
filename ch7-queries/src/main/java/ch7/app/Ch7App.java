@@ -28,7 +28,9 @@ class Ch7App {
 
 
     @Test
-    void jpql_basic_queries() {
+    void static_queries() {
+        // non parametrized
+
         System.out.println("JPQL Query 1:\t" + queryService.findEmployeeNames());
         System.out.println("JPQL Query 2:\t" + queryService.findEmployeeNamesTypeSafe());
         System.out.println("JPQL Query 3:\t" + queryService.findFilteredEmployees());
@@ -44,14 +46,19 @@ class Ch7App {
 
     @Test
     void dynamic_queries() {
-        System.out.println("Dynamic Query 1:\t" + queryService.findByDepartmentAndEmployee("Dept-1a", "John"));
-        System.out.println("Dynamic Query 2:\t" + queryService.findByDepartmentAndEmployee2("Dept-1a", "John"));
+        // parametrized
+
+        System.out.println("Dynamic Query 1:\t" +
+                queryService.findByDepartmentAndEmployee("Dept-1a", "John"));
+
+        System.out.println("Dynamic Query 2:\t" +
+                queryService.findByDepartmentAndEmployee2("Dept-1a", "John"));
     }
 
     @Test
     void named_queries() {
         /*
-         * Named Queries are defined on entity level with @NamedQuery
+         * Named Queries are defined on entity level with @NamedQuery. Parametrized.
          */
         Employee result7 = em.createNamedQuery("Employee.findByName", Employee.class)
                 .setParameter("empName", "Paul")
