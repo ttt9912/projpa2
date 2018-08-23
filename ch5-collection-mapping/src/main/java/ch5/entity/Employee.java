@@ -8,7 +8,6 @@ import javax.persistence.*;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 /*
  * @ElementCollection: collection of non-Entity Objects (but rather
@@ -74,7 +73,7 @@ public class Employee {
 //                ", vacationBookings=" + vacationBookings +
 //                ", nickNames=" + nickNames +
 //                ", phoneNumbers=" + phoneNumbers +
-                ", departments=" + departments.stream().map(d -> d.getDepartmentName()).collect(Collectors.joining(", ")) +
+//                ", departments=" + departments.stream().map(d -> d.getDepartmentName()).collect(Collectors.joining(", ")) +
                 '}';
     }
 }

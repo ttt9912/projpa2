@@ -56,6 +56,16 @@ class Ch7App {
     }
 
     @Test
+    void dynamic_queris_with_typed_parameters() {
+        // parameters are types (i.e. other Entities)
+
+        final DepartmentRepository departmentRepository = new DepartmentRepository(em);
+        final Department department = departmentRepository.findByName("Dept-1a");
+
+        System.out.println(queryService.findEmployeesByDepartment(department));
+    }
+
+    @Test
     void named_queries() {
         /*
          * Named Queries are defined on entity level with @NamedQuery. Parametrized.
@@ -91,14 +101,6 @@ class Ch7App {
                 .getSingleResult();
 
         System.out.println("Dynamic Named Query 1:\t" + res);
-    }
-
-    @Test
-    void with_typed_parameters() {
-        final DepartmentRepository departmentRepository = new DepartmentRepository(em);
-        final Department department = departmentRepository.findByName("Dept-1a");
-
-        System.out.println(queryService.findEmployeesByDepartment(department));
     }
 
 }
