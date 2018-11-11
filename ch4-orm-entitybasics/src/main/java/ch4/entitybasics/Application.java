@@ -8,7 +8,7 @@ import java.util.List;
 public class Application {
 
     public static void main(String[] args) {
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("PersonPU");
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("ch4PersonPU");
         EntityManager em = emf.createEntityManager();
 
         PersonService personService = new PersonService(em);

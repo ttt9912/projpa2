@@ -17,13 +17,13 @@ import java.util.stream.Collectors;
 @SuppressWarnings("JpaQueryApiInspection")
 class Ch7App {
 
-    private static final EntityManagerFactory emf = Persistence.createEntityManagerFactory("persistenceUnit");
+    private static final EntityManagerFactory emf = Persistence.createEntityManagerFactory("ch7EmployeePU");
     private static final EntityManager em = emf.createEntityManager();
     private final QueryServiceJPQL queryService = new QueryServiceJPQL(em);
 
     @BeforeAll
     static void initData() {
-        new DefaultDataCreator(em).insertDefaultData();
+        new DbInitializer(em).insertDefaultData();
     }
 
 

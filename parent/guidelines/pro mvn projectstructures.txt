@@ -20,6 +20,8 @@ ___Pro Spring 5____
 
 	Keine 2 packages dürfen gleich heissen! Auch nicht in unterschiedlichen Modulen
 
+- Classes -
+    Main: @Test zum Ausführen verwenden, so können alle Demos aufs mal ausgeführt werden
 
 ____Pro JPA 2____
 
@@ -56,5 +58,3 @@ Comments:
    - delete src folder in parent module
 
    - use package names with chapter name for non confusing imports
-
-

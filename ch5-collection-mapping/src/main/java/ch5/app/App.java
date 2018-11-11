@@ -13,7 +13,7 @@ import java.util.*;
 public class App {
 
     public static void main(String[] arg) {
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("persistenceUnit");
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("ch5EmployeePU");
         EntityManager em = emf.createEntityManager();
 
         // create and save Employee with VacationEntries (embeddable) and nicknames (basic type)

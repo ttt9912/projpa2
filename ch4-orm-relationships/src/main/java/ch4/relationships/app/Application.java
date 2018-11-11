@@ -6,12 +6,13 @@ import ch4.relationships.repository.*;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import java.util.Collections;
 import java.util.List;
 
 public class Application {
 
     public static void main(String[] args) {
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("persistenceUnit");
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("ch4EmployeePU");
         EntityManager em = emf.createEntityManager();
 
         EmployeeRepository employeeRepository = new EmployeeRepository(em);
@@ -69,13 +70,13 @@ public class Application {
         // join Employee with Department, Parkingspace, Project
         em.getTransaction().begin();
         employee.setDepartment(department);
-        department.getEmployees().add(employee);
+        department.setEmployees(Collections.singletonList(employee));
         employee.setParkingSpace(parkingSpace);
         parkingSpace.setEmployee(employee);
-        employee.getProjects().add(project);
-        project.getEmployees().add(employee);
-        employee.getPhones().add(phone);
-        employee.getBadges().add(badge);
+        employee.setProjects(Collections.singletonList(project));
+        project.setEmployees(Collections.singletonList(employee));
+        employee.setPhones(Collections.singletonList(phone));
+        employee.setBadges(Collections.singletonList(badge));
         System.out.println("Updated Employee: " + employee);
         em.getTransaction().commit();
 

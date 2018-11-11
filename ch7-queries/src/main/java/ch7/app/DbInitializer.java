@@ -9,13 +9,12 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-final class DefaultDataCreator {
-    // todo: DI
+final class DbInitializer {
     private final EmployeeRepository employeeRepository;
     private final DepartmentRepository departmentRepository;
     private final PhoneRepository phoneRepository;
 
-    DefaultDataCreator(final EntityManager em) {
+    DbInitializer(final EntityManager em) {
         employeeRepository = new EmployeeRepository(em);
         departmentRepository = new DepartmentRepository(em);
         phoneRepository = new PhoneRepository(em);
