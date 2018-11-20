@@ -29,12 +29,11 @@ public class EmployeeService {
         logEmployee(id); // same em
         auditService.logPropagationRequired(id); // propagation required
         auditService.logPropagationNew(id); // propagation new
-        auditService.logNonTransactional(id); // non-transactional
 
         return employee;
     }
 
-    // works - transaction is active, uses this em with active persistence context
+    // transaction is active, uses this em with active persistence context
     private void logEmployee(final int id) {
         System.out.println("Same EntityManager: " + em.find(Employee.class, id));
     }
