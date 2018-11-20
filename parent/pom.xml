@@ -15,6 +15,7 @@
         <module>../ch5-collection-mapping</module>
         <module>../ch7-queries</module>
         <module>../common</module>
+        <module>../ch6-entitymanager</module>
     </modules>
 
     <properties>
