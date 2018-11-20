@@ -1,0 +1,18 @@
+-----------------------------------------------------------------------------
+Container Managed EntityManager
+-----------------------------------------------------------------------------
+--- Transaction Scoped ---
+ - uses JTA transactions
+ - JTA starts and commits the transaction
+ - impossible to interfere with EntityManager's transactions fetched using
+   entityManager.getTransaction()
+
+--- Extended ---
+
+-----------------------------------------------------------------------------
+Application managed EntityManager
+-----------------------------------------------------------------------------
+- you don't want to be in part of JTA transaction and you need to manage them
+  for yourself (resource-local entity manager)
+- typically, application managed EntityManager which works with
+  EntityManager.getTransaction() is used in Java SE environment

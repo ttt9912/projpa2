@@ -11,8 +11,8 @@
         </encoder>
     </appender>
 
-    <logger name="org.hibernate" level="info"/>
-    <logger name="org.springframework" level="info"/>
+    <logger name="org.hibernate" level="error"/>
+    <logger name="org.springframework" level="error"/>
 
     <root level="debug">
         <appender-ref ref="console"/>

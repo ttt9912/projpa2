@@ -56,7 +56,7 @@ public class JpaConfig {
         hibernateProperties.put("hibernate.dialect", "org.hibernate.dialect.H2Dialect");
         hibernateProperties.put("hibernate.format_sql", false);
         hibernateProperties.put("hibernate.use_sql_comments", true);
-        hibernateProperties.put("hibernate.show_sql", true);
+        hibernateProperties.put("hibernate.show_sql", false);
         hibernateProperties.put("hibernate.max_fetch_depth", 3);
         hibernateProperties.put("hibernate.jdbc.batch_size", 10);
         hibernateProperties.put("hibernate.jdbc.fetch_size", 50);

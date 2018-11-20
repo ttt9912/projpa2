@@ -5,7 +5,10 @@ import ch6.p1_container_managed.transaction_scoped.service.EmployeeService;
 import org.junit.jupiter.api.Test;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
-public class Demo {
+/*
+ * Propagating transaction between different EntityManager instances
+ */
+public class PropagationDemo {
 
     @Test
     void contextLoad() {
