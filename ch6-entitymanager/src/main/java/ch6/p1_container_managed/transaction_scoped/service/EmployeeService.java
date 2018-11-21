@@ -17,18 +17,26 @@ public class EmployeeService {
     @PersistenceContext
     private EntityManager em;
 
+    @Transactional // provides Transaction for EntityManager
+    public Employee createEmployee(String name, long salary) {
+        Employee employee = new Employee();
+        employee.setName(name);
+        employee.setSalary(salary);
+        em.persist(employee);
+        return employee;
+    }
 
     @Transactional // provides Transaction for EntityManager
-    public Employee createEmployee(int id, String name, long salary) {
-        Employee employee = new Employee(id);
+    public Employee createAndLog(String name, long salary) {
+        Employee employee = new Employee();
         employee.setName(name);
         employee.setSalary(salary);
         em.persist(employee);
 
         // propagate transaction
-        logEmployee(id); // same em
-        auditService.logPropagationRequired(id); // propagation required
-        auditService.logPropagationNew(id); // propagation new
+        logEmployee(employee.getId()); // same em
+        auditService.logPropagationRequired(employee.getId()); // propagation required
+        auditService.logPropagationNew(employee.getId()); // propagation new
 
         return employee;
     }

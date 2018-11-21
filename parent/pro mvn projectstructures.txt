@@ -3,8 +3,8 @@ ___Pro Spring 5____
 - Parent Module - (File->New->Project)
 	groupId: 		ch.ttt
 	artifactId:		prospring5
-	project name:		prospring5
-	project location: 	D:\dev\workspace\prospring5
+	department name:		prospring5
+	department location: 	D:\dev\workspace\prospring5
 	module name: 		parent
 	content root:		D:\dev\workspace\prospring5\parent
 
@@ -28,8 +28,8 @@ ____Pro JPA 2____
 - Parent Module -
 	groupId: 		ch.ttt
 	artifactId:		projpa2
-	project name:		projpa2
-	project location: 	D:\dev\workspace\projpa2
+	department name:		projpa2
+	department location: 	D:\dev\workspace\projpa2
 	module name: 		parent
 	content root:		D:\dev\workspace\projpa2\parent
 
