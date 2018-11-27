@@ -12,7 +12,7 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 public class PropagationDemo {
 
     @Test
-    void contextLoad() {
+    void demo() {
         AnnotationConfigApplicationContext ctx =
                 new AnnotationConfigApplicationContext(JpaConfig.class);
 

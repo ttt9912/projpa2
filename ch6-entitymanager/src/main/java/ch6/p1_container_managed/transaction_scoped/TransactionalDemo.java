@@ -49,7 +49,7 @@ public class TransactionalDemo {
     @Transactional(propagation = Propagation.NEVER)
     public void c() {
         assertNotNull(em);
-        assertTrue(em.isJoinedToTransaction());
+        assertFalse(em.isJoinedToTransaction());
     }
 
 }

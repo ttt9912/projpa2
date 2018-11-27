@@ -16,11 +16,8 @@ public class DepartmentService {
     private EntityManager em;
 
     public Employee createEmployee(String name, long salary) {
-        emf.createEntityManager();
-
         Employee employee = new Employee();
         employee.setName(name);
-        employee.setSalary(salary);
 
         em.persist(employee);
         return employee;

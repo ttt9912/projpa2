@@ -21,7 +21,6 @@ public class EmployeeService {
     public Employee createEmployee(String name, long salary) {
         Employee employee = new Employee();
         employee.setName(name);
-        employee.setSalary(salary);
         em.persist(employee);
         return employee;
     }
@@ -30,7 +29,6 @@ public class EmployeeService {
     public Employee createAndLog(String name, long salary) {
         Employee employee = new Employee();
         employee.setName(name);
-        employee.setSalary(salary);
         em.persist(employee);
 
         // propagate transaction
