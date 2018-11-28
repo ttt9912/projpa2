@@ -40,7 +40,7 @@ public class EmployeeService {
     }
 
     // transaction is active, uses this em with active persistence context
-    private void logEmployee(final int id) {
+    private void logEmployee(final long id) {
         System.out.println("Same EntityManager: " + em.find(Employee.class, id));
     }
 }

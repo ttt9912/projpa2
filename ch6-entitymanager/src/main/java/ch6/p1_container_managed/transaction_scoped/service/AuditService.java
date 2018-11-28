@@ -16,12 +16,12 @@ public class AuditService {
     private EntityManager em;
 
     // @Transactional // obsolete
-    public void logPropagationRequired(final int id) {
+    public void logPropagationRequired(final long id) {
         System.out.println("Propagation REQUIRED: " + em.find(Employee.class, id));
     }
 
     @Transactional(propagation = Propagation.REQUIRES_NEW)
-    public void logPropagationNew(final int id) {
+    public void logPropagationNew(final long id) {
         System.out.println("Propagation REQUIRES_NEW: " + em.find(Employee.class, id));
     }
 }

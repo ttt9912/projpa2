@@ -33,7 +33,7 @@ public class DepartmentService {
     }
 
     @Transactional // creates transaction
-    public void assignEmployee(int emplId, int projId) {
+    public void assignEmployee(long emplId, int projId) {
         Employee employee = em.find(Employee.class, emplId);
         Department department = em.find(Department.class, projId);
         department.getEmployees().add(employee);
