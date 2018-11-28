@@ -11,7 +11,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 @Component
-public class EntityManagerMethodsDemo {
+public class EntityManagerMethodsTransactionalDemo {
 
     @PersistenceContext
     private EntityManager em;
@@ -19,7 +19,7 @@ public class EntityManagerMethodsDemo {
 
     @Test
     public void withTransaction() {
-        EntityManagerMethodsDemo self = initContext();
+        EntityManagerMethodsTransactionalDemo self = initContext();
         self.emOperationsTransactional();
     }
 
@@ -41,7 +41,7 @@ public class EntityManagerMethodsDemo {
 
     @Test
     public void withoutTransaction() {
-        EntityManagerMethodsDemo self = initContext();
+        EntityManagerMethodsTransactionalDemo self = initContext();
         self.emOperationsNonTransactional();
     }
 
@@ -62,10 +62,10 @@ public class EntityManagerMethodsDemo {
 
     // -----setup-------
 
-    private EntityManagerMethodsDemo initContext() {
+    private EntityManagerMethodsTransactionalDemo initContext() {
         AnnotationConfigApplicationContext ctx =
                 new AnnotationConfigApplicationContext(JpaConfig.class);
-        EntityManagerMethodsDemo self = ctx.getBean(EntityManagerMethodsDemo.class);
+        EntityManagerMethodsTransactionalDemo self = ctx.getBean(EntityManagerMethodsTransactionalDemo.class);
         self.insertDummyEmployee("John");
         return self;
     }
