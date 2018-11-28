@@ -1,7 +1,7 @@
 package ch6.p1_container_managed.transaction_scoped.service;
 
-import ch6.p1_container_managed.transaction_scoped.entity.Department;
-import ch6.p1_container_managed.transaction_scoped.entity.Employee;
+import ch6.entities.Department;
+import ch6.entities.Employee;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 

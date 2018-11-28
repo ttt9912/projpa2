@@ -1,4 +1,4 @@
-package ch6.p1_container_managed.transaction_scoped.entity;
+package ch6.entities;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

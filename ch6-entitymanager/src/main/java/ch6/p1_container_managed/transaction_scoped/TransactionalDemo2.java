@@ -1,8 +1,8 @@
 package ch6.p1_container_managed.transaction_scoped;
 
+import ch6.entities.Department;
+import ch6.entities.Employee;
 import ch6.p1_container_managed.transaction_scoped.config.JpaConfig;
-import ch6.p1_container_managed.transaction_scoped.entity.Department;
-import ch6.p1_container_managed.transaction_scoped.entity.Employee;
 import ch6.p1_container_managed.transaction_scoped.service.DepartmentService;
 import ch6.p1_container_managed.transaction_scoped.service.EmployeeService;
 import org.junit.jupiter.api.Test;

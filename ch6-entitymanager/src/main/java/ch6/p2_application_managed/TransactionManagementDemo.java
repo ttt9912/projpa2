@@ -1,13 +1,12 @@
 package ch6.p2_application_managed;
 
-import ch6.p2_application_managed.entity.Person;
-import ch6.p2_application_managed.service.EmployeeService;
+import ch6.entities.Employee;
 import org.junit.jupiter.api.Test;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
-import java.util.List;
+import javax.persistence.TypedQuery;
 
 /*
  * - Application Managed Entity Manager
@@ -18,19 +17,20 @@ public class TransactionManagementDemo {
 
     @Test
     void demo() {
+
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("ch6EmployeePU");
         EntityManager em = emf.createEntityManager();
 
-        EmployeeService employeeService = new EmployeeService(em);
 
         // Create and persist an Entity
         em.getTransaction().begin();
-        Person person = employeeService.createEmployee("John Doe");
+        Employee employee = new Employee(11L, "John");
+        em.persist(employee);
         em.getTransaction().commit();
 
         // find all
-        List<Person> allPeople = employeeService.findAllEmployees();
-        System.out.println("All Persons: " + allPeople);
+        TypedQuery<Employee> query = em.createQuery("SELECT e FROM Employee e", Employee.class);
+        System.out.println("All Employees: " + query.getResultList());
 
         em.close();
         emf.close();

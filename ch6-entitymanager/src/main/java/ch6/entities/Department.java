@@ -1,4 +1,4 @@
-package ch6.p1_container_managed.transaction_scoped.entity;
+package ch6.entities;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -17,7 +17,7 @@ public class Department {
     private String name;
 
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-    @JoinColumn(name = "PROJECT_ID")
+    @JoinColumn(name = "DEPARTMENT_ID")
     private List<Employee> employees;
 
 }

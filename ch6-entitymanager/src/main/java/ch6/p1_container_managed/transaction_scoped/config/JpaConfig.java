@@ -42,7 +42,7 @@ public class JpaConfig {
     public EntityManagerFactory entityManagerFactory() {
         LocalContainerEntityManagerFactoryBean factoryBean =
                 new LocalContainerEntityManagerFactoryBean();
-        factoryBean.setPackagesToScan("ch6.p1_container_managed.transaction_scoped.entity");
+        factoryBean.setPackagesToScan("ch6.entities");
         factoryBean.setDataSource(dataSource());
         factoryBean.setJpaVendorAdapter(jpaVendorAdapter());
         factoryBean.setJpaProperties(hibernateProperties());
