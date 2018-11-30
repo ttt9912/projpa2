@@ -24,15 +24,11 @@ public class AttachedDetachedDemo {
         em.getTransaction().commit(); // saved to db
 
         employee.setName("George");
-
+        em.contains(employee);
         System.out.println("db: " + jdbcUtil.query(FIND_ALL));
 
         em.getTransaction().begin();
         em.getTransaction().commit();
-
-
         System.out.println("db: " + jdbcUtil.query(FIND_ALL));
-
-
     }
 }
