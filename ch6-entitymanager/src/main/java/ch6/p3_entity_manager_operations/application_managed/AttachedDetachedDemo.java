@@ -1,4 +1,4 @@
-package ch6.p2_application_managed;
+package ch6.p3_entity_manager_operations.application_managed;
 
 import ch6.entities.Employee;
 import ch6.util.jdbc.JdbcUtil;

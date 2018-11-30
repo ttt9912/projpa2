@@ -1,4 +1,4 @@
-package ch6.p2_application_managed;
+package ch6.p3_entity_manager_operations.application_managed;
 
 import ch6.entities.Employee;
 import ch6.util.jdbc.JdbcUtil;
@@ -10,9 +10,9 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import java.util.Random;
 
-public class EntityManagerMethods_NonTransactionalDemo {
+public class EntityManagerMethods_TransactionalDemo {
     private final JdbcUtil jdbcUtil = new JdbcUtil("jdbc:h2:~/dev/workspaces/projpa2/h2/ch6EmployeeDB", "sa", "");
-    private final String FIND_ALL = "select * from Employee";
+    private final String FIND_ALL = "SELECT * FROM EMPLOYEE";
     private final long dummyId = new Random().nextLong();
 
     private EntityManagerFactory emf;
@@ -32,38 +32,40 @@ public class EntityManagerMethods_NonTransactionalDemo {
     }
 
 
+
     @Test
-    public void persistNonTransactional() {
+    public void persistTransactional() {
+        Employee employee = new Employee(1L, "Paul");
 
-        Employee employee = new Employee(2L, "Peter");
+        em.getTransaction().begin();
 
-        // persist without transaction - added to persistence ctx, but not in db
-        em.persist(employee);
+        em.persist(employee); // put to persistence ctx, not yet in db
         System.out.println("\nmanaged: " + em.contains(employee));
         System.out.println("in db: " + jdbcUtil.query(FIND_ALL));
 
-        // new transaction  - persistence ctx is synchronized, entity is in db
+        em.getTransaction().commit(); // in db
+        System.out.println("\nmanaged: " + em.contains(employee));
+        System.out.println("in db: " + jdbcUtil.query(FIND_ALL));
+    }
+
+    @Test
+    public void findTransactional() {
         em.getTransaction().begin();
+        Employee employee = em.find(Employee.class, dummyId);
         em.getTransaction().commit();
         System.out.println("\nmanaged: " + em.contains(employee));
-        System.out.println("in db: " + jdbcUtil.query(FIND_ALL));
     }
 
     @Test
-    public void findNonTransactional() {
+    public void removeTransactional() {
         Employee employee = em.find(Employee.class, dummyId);
-        System.out.println("\nmanaged: " + em.contains(employee));
-    }
 
-    @Test
-    public void removeNonTransactional() {
-        Employee employee = em.find(Employee.class, dummyId);
+        em.getTransaction().begin();
 
         em.remove(employee); // removed persistence ctx, still in db
         System.out.println("\nmanaged: " + em.contains(employee));
         System.out.println("in db: " + jdbcUtil.query(FIND_ALL));
 
-        em.getTransaction().begin(); // new transaction
         em.getTransaction().commit(); // removed from db
         System.out.println("\nmanaged: " + em.contains(employee));
         System.out.println("in db: " + jdbcUtil.query(FIND_ALL));

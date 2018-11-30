@@ -1,7 +1,7 @@
 package ch6.p1_container_managed.transaction_scoped;
 
 import ch6.entities.Employee;
-import ch6.p1_container_managed.transaction_scoped.config.JpaConfig;
+import ch6.p1_container_managed.transaction_scoped.config.P1TxScopedConfig;
 import ch6.p1_container_managed.transaction_scoped.service.EmployeeService;
 import org.junit.jupiter.api.Test;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
@@ -14,7 +14,7 @@ public class PropagationDemo {
     @Test
     void demo() {
         AnnotationConfigApplicationContext ctx =
-                new AnnotationConfigApplicationContext(JpaConfig.class);
+                new AnnotationConfigApplicationContext(P1TxScopedConfig.class);
 
         EmployeeService employeeService = ctx.getBean(EmployeeService.class);
 

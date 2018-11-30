@@ -17,16 +17,16 @@ public class TransactionManagementDemo {
 
     @Test
     void demo() {
-
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("ch6EmployeePU");
         EntityManager em = emf.createEntityManager();
-
 
         // Create and persist an Entity
         em.getTransaction().begin();
         Employee employee = new Employee(11L, "John");
         em.persist(employee);
         em.getTransaction().commit();
+
+        System.out.println("managed: " + em.contains(employee));
 
         // find all
         TypedQuery<Employee> query = em.createQuery("SELECT e FROM Employee e", Employee.class);

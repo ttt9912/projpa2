@@ -36,7 +36,6 @@ public class JdbcUtil {
 
                 if (!rs.isFirst()) {
                     sb.append(", ");
-
                 }
                 sb.append("{");
 
@@ -46,7 +45,6 @@ public class JdbcUtil {
                     sb.append(rsmd.getColumnName(i) + "=" + columnValue);
                 }
                 sb.append("}");
-
             }
             sb.append("]");
         } catch (SQLException e) {

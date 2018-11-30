@@ -1,6 +1,6 @@
 package ch6.p1_container_managed.transaction_scoped;
 
-import ch6.p1_container_managed.transaction_scoped.config.JpaConfig;
+import ch6.p1_container_managed.transaction_scoped.config.P1TxScopedConfig;
 import org.junit.jupiter.api.Test;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.stereotype.Component;
@@ -21,7 +21,7 @@ public class TransactionalDemo {
     @Test
     void transactional() {
         AnnotationConfigApplicationContext ctx =
-                new AnnotationConfigApplicationContext(JpaConfig.class);
+                new AnnotationConfigApplicationContext(P1TxScopedConfig.class);
 
         // PersistenceContext only works on a bean within context
         TransactionalDemo self = ctx.getBean(TransactionalDemo.class);

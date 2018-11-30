@@ -1,7 +1,7 @@
-package ch6.p1_container_managed.transaction_scoped;
+package ch6.p3_entity_manager_operations.container_managed.transaction_scoped;
 
 import ch6.entities.Employee;
-import ch6.p1_container_managed.transaction_scoped.config.JpaConfig;
+import ch6.p3_entity_manager_operations.container_managed.transaction_scoped.config.P3TxScopedConfig;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
@@ -24,7 +24,7 @@ public class EntityManagerMethods_NonTransactionalDemo {
     @BeforeEach
     void initContext() {
         AnnotationConfigApplicationContext ctx =
-                new AnnotationConfigApplicationContext(JpaConfig.class);
+                new AnnotationConfigApplicationContext(P3TxScopedConfig.class);
         self = ctx.getBean(EntityManagerMethods_NonTransactionalDemo.class);
         self.insertDummyEmployee();
     }

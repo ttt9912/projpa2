@@ -1,7 +1,6 @@
-package ch6.p1_container_managed.transaction_scoped.config;
+package ch6.config;
 
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseBuilder;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseType;
@@ -18,9 +17,7 @@ import java.util.Properties;
 
 @Configuration
 @EnableTransactionManagement
-@ComponentScan(basePackages = {"ch6.p1_container_managed.transaction_scoped"})
 public class JpaConfig {
-
     @Bean
     public DataSource dataSource() {
         final EmbeddedDatabaseBuilder dbBuilder = new EmbeddedDatabaseBuilder();
