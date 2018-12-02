@@ -31,8 +31,6 @@ public class EntityManagerMethods_TransactionalDemo {
         em.getTransaction().commit();
     }
 
-
-
     @Test
     public void persistTransactional() {
         Employee employee = new Employee(1L, "Paul");
@@ -68,6 +66,18 @@ public class EntityManagerMethods_TransactionalDemo {
 
         em.getTransaction().commit(); // removed from db
         System.out.println("\nmanaged: " + em.contains(employee));
+        System.out.println("in db: " + jdbcUtil.query(FIND_ALL));
+    }
+
+    @Test
+    public void flushTransactional() {
+        em.getTransaction().begin();
+        Employee employee = new Employee(100L, "Paul");
+        em.persist(employee);
+        em.flush();
+        System.out.println("in db: " + jdbcUtil.query(FIND_ALL));
+        em.getTransaction().commit();
+
         System.out.println("in db: " + jdbcUtil.query(FIND_ALL));
     }
 }

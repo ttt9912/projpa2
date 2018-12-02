@@ -85,14 +85,20 @@ public class TransactionalDemo {
     @Test
     public void flushTransactionalTest() {
         self.flushTransactional();
+        System.out.println("in db: " + jdbcUtil.query(FIND_ALL));
     }
 
     @Transactional
     public void flushTransactional() {
         Employee employee = new Employee(100L, "Paul");
         em.persist(employee);
-        System.out.println("in db: " + jdbcUtil.query(FIND_ALL));  // not saved to db yet
-        em.flush();
-        System.out.println("in db: " + jdbcUtil.query(FIND_ALL));  // TODO: ????? not saved to db yet
+        em.clear(); // employee will not be saved
+
+        Employee employee2 = new Employee(111L, "Peter");
+        em.persist(employee2);
+        em.flush(); // employee2 will be saved
+        em.clear();
+
+        System.out.println("in db: " + jdbcUtil.query(FIND_ALL)); // not saved yet - although flush
     }
 }
