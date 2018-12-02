@@ -13,10 +13,10 @@ import javax.persistence.PersistenceContext;
 import java.util.Random;
 
 @Component
-public class EntityManagerMethods_NonTransactionalDemo {
+public class NonTransactionalDemo {
     private final long dummyId = new Random().nextLong();
 
-    private EntityManagerMethods_NonTransactionalDemo self;
+    private NonTransactionalDemo self;
 
     @PersistenceContext
     private EntityManager em;
@@ -25,7 +25,7 @@ public class EntityManagerMethods_NonTransactionalDemo {
     void initContext() {
         AnnotationConfigApplicationContext ctx =
                 new AnnotationConfigApplicationContext(P3TxScopedConfig.class);
-        self = ctx.getBean(EntityManagerMethods_NonTransactionalDemo.class);
+        self = ctx.getBean(NonTransactionalDemo.class);
         self.insertDummyEmployee();
     }
 

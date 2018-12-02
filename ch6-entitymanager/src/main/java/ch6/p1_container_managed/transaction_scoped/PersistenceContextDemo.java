@@ -5,6 +5,7 @@ import ch6.p1_container_managed.transaction_scoped.config.P1TxScopedConfig;
 import org.junit.jupiter.api.Test;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
@@ -26,20 +27,40 @@ public class PersistenceContextDemo {
         PersistenceContextDemo self = ctx.getBean(PersistenceContextDemo.class);
 
         Employee employee = new Employee();
+
         self.save(employee);
-        System.out.println("managed: " + self.isManaged(employee));
+
+        System.out.println("\n--- from outside ---");
+        System.out.println("managed: " + self.isManaged(employee)); // false - new persistence context
+        System.out.println("managed: " + self.isManagedRequiresNew(employee)); // false - new persistence context
+        System.out.println("managed: " + self.isManagedNever(employee)); // false - new persistence context
     }
 
     @Transactional
     public void save(Employee employee) {
         em.persist(employee);
-        System.out.println("managed: " + isManaged(employee));
 
+        System.out.println("\n--- within transaction ---");
+        System.out.println("managed: " + isManaged(employee)); // true - same persistence context
+        System.out.println("managed: " + isManagedRequiresNew(employee)); // true(!)
+        System.out.println("managed: " + isManagedNever(employee)); // true(!)
     }
 
     @Transactional
     public boolean isManaged(Employee employee) {
-        return em.contains(employee); // false - new persistence context
+        System.out.println("joined: " + em.isJoinedToTransaction());
+        return em.contains(employee);
     }
 
+    @Transactional(propagation = Propagation.REQUIRES_NEW)
+    public boolean isManagedRequiresNew(Employee employee) {
+        System.out.println("joined: " + em.isJoinedToTransaction());
+        return em.contains(employee);
+    }
+
+    @Transactional(propagation = Propagation.NEVER)
+    public boolean isManagedNever(Employee employee) {
+        System.out.println("joined: " + em.isJoinedToTransaction());
+        return em.contains(employee);
+    }
 }

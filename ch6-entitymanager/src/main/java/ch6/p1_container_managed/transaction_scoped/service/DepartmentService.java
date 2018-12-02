@@ -26,7 +26,6 @@ public class DepartmentService {
     @Transactional
     public Department createDepartment(String name) {
         Department department = new Department();
-        department.setName(name);
         department.setEmployees(Collections.emptyList());
         em.persist(department);
         return em.find(Department.class, department.getId());

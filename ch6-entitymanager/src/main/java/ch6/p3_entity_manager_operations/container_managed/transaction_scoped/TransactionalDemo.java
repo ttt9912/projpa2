@@ -14,12 +14,12 @@ import javax.persistence.PersistenceContext;
 import java.util.Random;
 
 @Component
-public class EntityManagerMethods_TransactionalDemo {
+public class TransactionalDemo {
     public static final JdbcUtil jdbcUtil = new JdbcUtil("jdbc:h2:mem:testdb", "sa", "");
     private static final String FIND_ALL = "select * from Employee";
     private final long dummyId = new Random().nextLong();
 
-    private EntityManagerMethods_TransactionalDemo self;
+    private TransactionalDemo self;
 
     @PersistenceContext
     private EntityManager em;
@@ -28,7 +28,7 @@ public class EntityManagerMethods_TransactionalDemo {
     void initContext() {
         AnnotationConfigApplicationContext ctx =
                 new AnnotationConfigApplicationContext(P3TxScopedConfig.class);
-        self = ctx.getBean(EntityManagerMethods_TransactionalDemo.class);
+        self = ctx.getBean(TransactionalDemo.class);
         self.insertDummyEmployee();
     }
 

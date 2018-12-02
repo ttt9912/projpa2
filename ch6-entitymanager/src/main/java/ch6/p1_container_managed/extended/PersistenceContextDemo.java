@@ -4,6 +4,7 @@ import ch6.entities.Employee;
 import ch6.p1_container_managed.extended.config.P1ExtendedConfig;
 import org.junit.jupiter.api.Test;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -15,6 +16,7 @@ import javax.persistence.PersistenceContextType;
  * persistence context (!should!) survive transactions
  */
 @Component
+@Scope
 public class PersistenceContextDemo {
 
     @PersistenceContext(type = PersistenceContextType.EXTENDED)

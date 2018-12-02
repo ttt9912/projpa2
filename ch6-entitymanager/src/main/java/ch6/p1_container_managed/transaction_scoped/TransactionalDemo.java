@@ -10,13 +10,13 @@ import org.springframework.transaction.annotation.Transactional;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 /*
  * EntityManager -> transaction
  */
 @Component
 public class TransactionalDemo {
+    @PersistenceContext
+    private EntityManager em;
 
     @Test
     void transactional() {
@@ -29,27 +29,34 @@ public class TransactionalDemo {
         self.b(); // part of a transaction
         self.c(); // no transaction
 
+        self.callTransactional();
+
         ctx.close();
     }
 
-    @PersistenceContext
-    private EntityManager em;
-
-    public void a() {
-        assertNotNull(em);
-        assertFalse(em.isJoinedToTransaction());
+    public boolean a() {
+        System.out.println("a: " + em.isJoinedToTransaction());
+        return em.isJoinedToTransaction();
     }
 
     @Transactional
-    public void b() {
-        assertNotNull(em);
-        assertTrue(em.isJoinedToTransaction());
+    public boolean b() {
+        System.out.println("b: " + em.isJoinedToTransaction());
+        return em.isJoinedToTransaction();
+
     }
 
     @Transactional(propagation = Propagation.NEVER)
-    public void c() {
-        assertNotNull(em);
-        assertFalse(em.isJoinedToTransaction());
+    public boolean c() {
+        System.out.println("c: " + em.isJoinedToTransaction());
+        return em.isJoinedToTransaction();
+
     }
 
+    @Transactional
+    public void callTransactional() {
+        a();
+        b();
+        c();
+    }
 }
