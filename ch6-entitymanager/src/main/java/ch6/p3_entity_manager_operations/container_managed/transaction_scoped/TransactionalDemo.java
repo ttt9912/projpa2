@@ -29,7 +29,6 @@ public class TransactionalDemo {
         AnnotationConfigApplicationContext ctx =
                 new AnnotationConfigApplicationContext(P3TxScopedConfig.class);
         self = ctx.getBean(TransactionalDemo.class);
-        self.insertDummyEmployee();
     }
 
     @Transactional
@@ -60,6 +59,8 @@ public class TransactionalDemo {
 
     @Transactional
     public void findTransactional() {
+        insertDummyEmployee();
+
         Employee employee1 = em.find(Employee.class, dummyId);
         System.out.println(employee1);
         System.out.println("managed: " + em.contains(employee1));
@@ -73,9 +74,25 @@ public class TransactionalDemo {
 
     @Transactional
     public void removeTransactional() {
+        insertDummyEmployee();
+
         Employee employee = em.find(Employee.class, dummyId);
         em.remove(employee);
         System.out.println("managed: " + em.contains(employee));
         System.out.println("in db: " + jdbcUtil.query(FIND_ALL)); // not removed from db yet
+    }
+
+    @Test
+    public void flushTransactionalTest() {
+        self.flushTransactional();
+    }
+
+    @Transactional
+    public void flushTransactional() {
+        Employee employee = new Employee(100L, "Paul");
+        em.persist(employee);
+        System.out.println("in db: " + jdbcUtil.query(FIND_ALL));  // not saved to db yet
+        em.flush();
+        System.out.println("in db: " + jdbcUtil.query(FIND_ALL));  // TODO: ????? not saved to db yet
     }
 }
