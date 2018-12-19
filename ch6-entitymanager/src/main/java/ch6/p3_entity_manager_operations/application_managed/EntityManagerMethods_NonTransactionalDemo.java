@@ -12,7 +12,7 @@ import java.util.Random;
 
 public class EntityManagerMethods_NonTransactionalDemo {
     private final JdbcUtil jdbcUtil = new JdbcUtil("jdbc:h2:~/dev/workspaces/projpa2/h2/ch6EmployeeDB", "sa", "");
-    private final String FIND_ALL = "select * from Employee";
+    private final String FIND_ALL = "select * from EmployeeC";
     private final long dummyId = new Random().nextLong();
 
     private EntityManagerFactory emf;
@@ -66,6 +66,14 @@ public class EntityManagerMethods_NonTransactionalDemo {
         em.getTransaction().begin(); // new transaction
         em.getTransaction().commit(); // removed from db
         System.out.println("\nmanaged: " + em.contains(employee));
+        System.out.println("in db: " + jdbcUtil.query(FIND_ALL));
+    }
+
+    @Test
+    public void flushNonTransactional() {
+        Employee employee = new Employee(100L, "Paul");
+        em.persist(employee);
+        // em.flush(); // TransactionRequiredException
         System.out.println("in db: " + jdbcUtil.query(FIND_ALL));
     }
 }

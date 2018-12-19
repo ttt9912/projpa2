@@ -37,7 +37,7 @@ public class JdbcUtil {
                 if (!rs.isFirst()) {
                     sb.append(", ");
                 }
-                sb.append("{");
+                sb.append("\n{");
 
                 for (int i = 1; i <= columnsNumber; i++) {
                     if (i > 1) sb.append(",  ");

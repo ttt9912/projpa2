@@ -16,7 +16,7 @@ import java.util.Random;
 @Component
 public class TransactionalDemo {
     public static final JdbcUtil jdbcUtil = new JdbcUtil("jdbc:h2:mem:testdb", "sa", "");
-    private static final String FIND_ALL = "select * from Employee";
+    private static final String FIND_ALL = "select * from EmployeeC";
     private final long dummyId = new Random().nextLong();
 
     private TransactionalDemo self;
@@ -36,7 +36,6 @@ public class TransactionalDemo {
         Employee employee = new Employee(dummyId, "John");
         em.persist(employee);
     }
-
 
     @Test
     public void persistTransactionalTest() {
@@ -82,23 +81,6 @@ public class TransactionalDemo {
         System.out.println("in db: " + jdbcUtil.query(FIND_ALL)); // not removed from db yet
     }
 
-    @Test
-    public void flushTransactionalTest() {
-        self.flushTransactional();
-        System.out.println("in db: " + jdbcUtil.query(FIND_ALL));
-    }
 
-    @Transactional
-    public void flushTransactional() {
-        Employee employee = new Employee(100L, "Paul");
-        em.persist(employee);
-        em.clear(); // employee will not be saved
 
-        Employee employee2 = new Employee(111L, "Peter");
-        em.persist(employee2);
-        em.flush(); // employee2 will be saved
-        em.clear();
-
-        System.out.println("in db: " + jdbcUtil.query(FIND_ALL)); // not saved yet - although flush
-    }
 }

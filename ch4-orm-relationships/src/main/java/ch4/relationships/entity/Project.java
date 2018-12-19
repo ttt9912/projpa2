@@ -45,7 +45,7 @@ public class Project {
     public String toString() {
         return "Project{" +
                 "id=" + id +
-                ", name='" + name + '\'' +
+                ", city='" + name + '\'' +
                 '}';
     }
 }

@@ -46,7 +46,6 @@ public class PersistenceContextDemo {
         System.out.println("managed: " + isManagedNever(employee)); // true(!)
     }
 
-    @Transactional
     public boolean isManaged(Employee employee) {
         System.out.println("joined: " + em.isJoinedToTransaction());
         return em.contains(employee);

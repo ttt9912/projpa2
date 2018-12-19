@@ -15,15 +15,15 @@ import java.util.Map;
  * 2.) basic types linke String, Integer, etc.)
  *
  * @ElementCollection attributes:
- * - name: optional, name of Element Collection Table
+ * - city: optional, city of Element Collection Table
  * - joinColumns: optional, FK reference from Collection table to Entity table
  *
- * @CollectionTable (optional): define name and join column for Element Collection
+ * @CollectionTable (optional): define city and join column for Element Collection
  * @AttributeOverride (optional): define column names for Element Collection of Embeddables
- * @Column (optional): define column name for Element Collection of basic types
+ * @Column (optional): define column city for Element Collection of basic types
  *
  * Maps:
- * @MapKeyColumn: name der column, die den basic type key speichert
+ * @MapKeyColumn: city der column, die den basic type key speichert
  */
 @Getter
 @Setter
@@ -43,7 +43,7 @@ public class Employee {
 
     // Element Collection of basic types
     @ElementCollection
-    @Column(name = "NICKNAME") // optional: rename column name
+    @Column(name = "NICKNAME") // optional: rename column city
     private Collection<String> nickNames;
 
     // Map with key = basic type
@@ -69,7 +69,7 @@ public class Employee {
     @Override
     public String toString() {
         return "Employee{" +
-                "name='" + name + '\'' +
+                "city='" + name + '\'' +
 //                ", vacationBookings=" + vacationBookings +
 //                ", nickNames=" + nickNames +
 //                ", phoneNumbers=" + phoneNumbers +

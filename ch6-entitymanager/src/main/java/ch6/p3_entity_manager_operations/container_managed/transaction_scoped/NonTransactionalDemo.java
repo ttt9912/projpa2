@@ -43,7 +43,7 @@ public class NonTransactionalDemo {
 
     public void persistNonTransactional() {
         System.out.println(em.isJoinedToTransaction());
-        // Employee employee = new Employee(200L, "Paul");
+        // EmployeeC employee = new EmployeeC(200L, "Paul");
         // em.persist(employee); // TransactionRequiredException
     }
 
@@ -59,12 +59,23 @@ public class NonTransactionalDemo {
     }
 
     @Test
-    public void removeTransactionalTest() {
-        self.removeTransactional();
+    public void removeNonTransactionalTest() {
+        self.removeNonTransactional();
     }
 
-    public void removeTransactional() {
-        // Employee employee = em.find(Employee.class, dummyId);
+    public void removeNonTransactional() {
+        // EmployeeC employee = em.find(EmployeeC.class, dummyId);
         // em.remove(employee); // TransactionRequiredException
+    }
+
+    @Test
+    public void flushNonTransactionalTest() {
+        self.flushNonTransactional();
+    }
+
+    public void flushNonTransactional() {
+        Employee employee = new Employee(100L, "Paul");
+        //em.flush();
+        em.clear();
     }
 }

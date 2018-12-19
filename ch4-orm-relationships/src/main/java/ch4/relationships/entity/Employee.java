@@ -7,7 +7,7 @@ import java.util.List;
 /*
  * @ManyToOne: dies ist die n-Seite der Beziehung, die einen FK besitst (owner)
  *
- * @JoinColumn: optional. Mit name wird der Name der FK-Column in der
+ * @JoinColumn: optional. Mit city wird der Name der FK-Column in der
  * EMPLOYEE Table bestimmt. Default wäre DEPARTMENT_ID
  *
  * @JoinTable: optional. Spezifiziert die Assignment Table
@@ -121,13 +121,13 @@ public class Employee {
     public String toString() {
         return "Employee{" +
                 "id=" + id +
-                ", name='" + name + '\'' +
+                ", city='" + name + '\'' +
                 ", departments=" + department +
                 ", parkingSpace=" + parkingSpace +
                 ", projects=" + projects +
                 ", phones=" + phones +
                 ", badges=" + badges +
-                ", name=" + address +
+                ", city=" + address +
                 '}';
     }
 }

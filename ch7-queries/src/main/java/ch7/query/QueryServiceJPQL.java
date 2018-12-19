@@ -24,13 +24,13 @@ public class QueryServiceJPQL {
 
     // Query: untyped
     public List findEmployeeNames() {
-        return em.createQuery("SELECT e.name FROM  Employee e")
+        return em.createQuery("SELECT e.city FROM  Employee e")
                 .getResultList();
     }
 
     // TypedQuery: typesafe
     public List<String> findEmployeeNamesTypeSafe() {
-        return em.createQuery("SELECT e.name FROM  Employee e", String.class)
+        return em.createQuery("SELECT e.city FROM  Employee e", String.class)
                 .getResultList();
     }
 
@@ -38,8 +38,8 @@ public class QueryServiceJPQL {
     public List<Employee> findFilteredEmployees() {
         return em.createQuery(
                 "SELECT e FROM  Employee e " +
-                        "WHERE e.department.name = 'Dept-1a' AND " +
-                        "e.name IN ('John', 'Paul')", Employee.class)
+                        "WHERE e.department.city = 'Dept-1a' AND " +
+                        "e.city IN ('John', 'Paul')", Employee.class)
                 .getResultList();
     }
 
@@ -48,7 +48,7 @@ public class QueryServiceJPQL {
         return em.createQuery(
                 "SELECT d, e " +
                         "FROM  Department d JOIN d.employees e " +
-                        "WHERE e.name = 'John'", Object[].class)
+                        "WHERE e.city = 'John'", Object[].class)
                 .getResultList();
     }
 
@@ -70,8 +70,8 @@ public class QueryServiceJPQL {
     public Employee findByDepartmentAndEmployee(final String deptName, final String empName) {
         String queryString = "SELECT e " +
                 "FROM  Employee e " +
-                "WHERE e.department.name = ?1 " +
-                "AND e.name = ?2";
+                "WHERE e.department.city = ?1 " +
+                "AND e.city = ?2";
 
 
         return em.createQuery(queryString, Employee.class)
@@ -84,8 +84,8 @@ public class QueryServiceJPQL {
     public Employee findByDepartmentAndEmployee2(final String deptName, final String empName) {
         String queryString = "SELECT e " +
                 "FROM  Employee e " +
-                "WHERE e.department.name = :deptName " +
-                "AND e.name = :empName";
+                "WHERE e.department.city = :deptName " +
+                "AND e.city = :empName";
 
 
         return em.createQuery(queryString, Employee.class)

@@ -88,8 +88,8 @@ class Ch7App {
         final String query =
                 "SELECT e.salary " +
                         "FROM Employee e " +
-                        "WHERE e.department.name = :deptName AND " +
-                        "e.name = :empName";
+                        "WHERE e.department.city = :deptName AND " +
+                        "e.city = :empName";
 
         TypedQuery<Long> namedQuery = em.createQuery(query, Long.class);
         emf.addNamedQuery("findSalaryForNameAndDepartment", namedQuery);

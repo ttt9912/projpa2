@@ -30,18 +30,16 @@ public class PersistenceContextDemo {
 
         Employee employee = new Employee();
         self.save(employee);
-        System.out.println("managed: " + self.isManaged(employee));
+        System.out.println("managed: " + self.isManaged(employee)); // true - still the same persistence context
     }
 
     @Transactional
     public void save(Employee employee) {
         em.persist(employee);
         System.out.println("managed: " + isManaged(employee));
-
     }
 
-    @Transactional
     public boolean isManaged(Employee employee) {
-        return em.contains(employee); // true - still the same persistence context
+        return em.contains(employee);
     }
 }
