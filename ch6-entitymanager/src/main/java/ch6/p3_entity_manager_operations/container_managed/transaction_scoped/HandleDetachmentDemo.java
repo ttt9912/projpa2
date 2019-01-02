@@ -37,19 +37,45 @@ public class HandleDetachmentDemo {
 
 
     @Test
-    public void triggeringLazyLoadingDemo() {
-        self.insertDummy();
-        self.triggeringLazyLoading();
+    public void lazyLoadingTest() {
+        // self.findNonTransactional(); // exception
+
+        Department dept = self.findTransactional();
+        List<Employee> employees = dept.getEmployees(); // OK - returns proxy
+        System.out.println(employees); // LazyInitializationException - real object
     }
 
+    // transactional: department is managed until transaction ends
     @Transactional
-    public void triggeringLazyLoading() {
-        Department department = em.find(Department.class, 101L);
-        List<Employee> employees = department.getEmployees();
+    public Department findTransactional() {
+        return em.find(Department.class, 101L);
     }
 
-    public void triggeringLazyLoadingNonTransactional() {
+    // non-transactional: department is detached after find
+    public void findNonTransactional() {
         Department department = em.find(Department.class, 101L);
-        List<Employee> employees = department.getEmployees();
+        List<Employee> employees = department.getEmployees(); // OK - returns proxy
+        System.out.println(employees); // LazyInitializationException - real object
+    }
+
+
+    @Test
+    public void triggeringLazyLoadingTest() {
+        self.insertDummy();
+        Department department = self.triggeringLazyLoading();
+        System.out.println(department.getEmployees()); // ok because relationship was triggered
+    }
+
+    // transactional: department is managed until transaction ends
+    @Transactional
+    public Department triggeringLazyLoading() {
+        Department department = em.find(Department.class, 101L);
+        List<Employee> employees = department.getEmployees(); // possibly returns proxy
+
+        //for (final Employee employee : employees) {
+        //    employee.getName(); // employee is definitely resolved
+        //
+        // }
+        return department;
     }
 }
