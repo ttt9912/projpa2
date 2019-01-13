@@ -27,7 +27,7 @@ public class PrintJob {
     @Override
     public String toString() {
         return "PrintJob{" +
-                "city='" + name + '\'' +
+                "name='" + name + '\'' +
                 '}';
     }
 }

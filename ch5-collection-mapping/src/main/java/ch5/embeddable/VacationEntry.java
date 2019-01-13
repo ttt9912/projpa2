@@ -20,7 +20,7 @@ public class VacationEntry {
     @Temporal(TemporalType.DATE)
     private Calendar startDate;
 
-    @Column(name = "DAYS") // define column city in Element Collection table
+    @Column(name = "DAYS") // define column name in Element Collection table
     private int daysTaken;
 
     @Override

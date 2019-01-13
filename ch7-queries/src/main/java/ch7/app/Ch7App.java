@@ -28,6 +28,12 @@ class Ch7App {
 
 
     @Test
+    void jpql_syntax() {
+        System.out.println("Implicit Join:\t" + queryService.implicitJoin());
+        System.out.println("Explicit Join:\t");
+    }
+
+    @Test
     void static_queries() {
         // non parametrized
 
@@ -88,8 +94,8 @@ class Ch7App {
         final String query =
                 "SELECT e.salary " +
                         "FROM Employee e " +
-                        "WHERE e.department.city = :deptName AND " +
-                        "e.city = :empName";
+                        "WHERE e.department.name = :deptName AND " +
+                        "e.name = :empName";
 
         TypedQuery<Long> namedQuery = em.createQuery(query, Long.class);
         emf.addNamedQuery("findSalaryForNameAndDepartment", namedQuery);

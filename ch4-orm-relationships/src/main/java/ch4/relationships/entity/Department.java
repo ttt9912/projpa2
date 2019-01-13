@@ -50,7 +50,7 @@ public class Department {
     public String toString() {
         return "Department{" +
                 "id=" + id +
-                ", city='" + name + '\'' +
+                ", name='" + name + '\'' +
                 '}';
     }
 }

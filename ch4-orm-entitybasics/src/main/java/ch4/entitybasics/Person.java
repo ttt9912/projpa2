@@ -119,7 +119,7 @@ public class Person {
     public String toString() {
         return "p1_basic_entity_annotations.ch4.entitybasics.Person{" +
                 "id=" + id +
-                ", city='" + name + '\'' +
+                ", name='" + name + '\'' +
                 ", salary=" + salary +
                 ", phoneNum='" + phoneNum + '\'' +
                 '}';

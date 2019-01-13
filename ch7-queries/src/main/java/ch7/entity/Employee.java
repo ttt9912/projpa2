@@ -11,7 +11,7 @@ import java.util.List;
 /*
  * Named Queries improve performance
  *
- * @NamedQuery(city, query)
+ * @NamedQuery(name, query)
  * @NamedQueries for more than one @NamedQuery for an Entity
  */
 
@@ -21,7 +21,7 @@ import java.util.List;
 @Entity
 @NamedQuery(name = "Employee.findByName",
         query = "SELECT e FROM Employee e " +
-                "WHERE e.city = :empName")
+                "WHERE e.name = :empName")
 public class Employee extends BaseEntity {
     private String name;
     private long salary;
