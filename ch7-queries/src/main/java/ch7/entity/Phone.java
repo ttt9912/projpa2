@@ -1,17 +1,20 @@
 package ch7.entity;
 
 import common.entity.BaseEntity;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
 import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
 
+@Entity
 @Getter
 @Setter
-@ToString
-@Entity
+@AllArgsConstructor
+@NoArgsConstructor
+@ToString(exclude = "employee")
 public class Phone extends BaseEntity {
     private String type;
     private String number;
+    @ManyToOne
+    private Employee employee;
 }

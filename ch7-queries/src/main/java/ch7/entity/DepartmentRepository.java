@@ -9,11 +9,10 @@ public class DepartmentRepository extends BaseRepository<Department> {
         super(em);
     }
 
-    public Department findByName(String name) {
-        final String qlString = "SELECT d FROM Department d WHERE d.name = :name";
-
-        return em.createQuery(qlString, Department.class)
-                .setParameter("name", name)
-                .getSingleResult();
+    public Department findByName(final String name) {
+        return em.createQuery("select d from Department d where d.name = ?1", Department.class)
+                .setParameter(1, name)
+                .getResultStream()
+                .findFirst().orElse(null);
     }
 }

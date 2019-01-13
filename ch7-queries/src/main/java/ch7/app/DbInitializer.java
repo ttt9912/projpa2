@@ -1,76 +1,80 @@
 package ch7.app;
 
-import ch7.entity.*;
+import ch7.entity.Department;
+import ch7.entity.Employee;
+import ch7.entity.Phone;
 
 import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
+/*
+ * inserts:
+ * - Employee(name=John, salary=50000,
+ *      department=Department(name=Dept-1a),
+ *      phones=[Phone(type=Work, number=9637440210), Phone(type=Private, number=4978778799)])
+ * - Employee(name=Paul, salary=65000,
+ *      department=Department(name=Dept-1a),
+ *      phones=[Phone(type=Work, number=7618504390), Phone(type=Private, number=5361294409)])
+ * - Employee(name=Paul, salary=65000,
+ *      department=Department(name=Dept-2a),
+ *      phones=[Phone(type=Work, number=4859551571), Phone(type=Private, number=9955007744)])
+ */
 final class DbInitializer {
-    private final EmployeeRepository employeeRepository;
-    private final DepartmentRepository departmentRepository;
-    private final PhoneRepository phoneRepository;
+    private static final EntityManagerFactory emf = Persistence.createEntityManagerFactory("ch7EmployeePU");
+    private static final EntityManager em = emf.createEntityManager();
 
-    DbInitializer(final EntityManager em) {
-        employeeRepository = new EmployeeRepository(em);
-        departmentRepository = new DepartmentRepository(em);
-        phoneRepository = new PhoneRepository(em);
+    DbInitializer() {
+        this.initEmployeeData();
+        this.printEmployees();
     }
 
-    void insertDefaultData() {
-        Department dept1 = createDefaultDepartment("Dept-1a");
-        Department dept2 = createDefaultDepartment("Dept-2a");
-        departmentRepository.createAndSaveAll(dept1, dept2);
+    private void initEmployeeData() {
+        Employee empl1 = new Employee("John", 50000, null, null);
+        empl1.setPhones(createDefaultPhones(empl1));
+        Employee empl2 = new Employee("Paul", 65000, null, null);
+        empl2.setPhones(createDefaultPhones(empl2));
+        Employee empl3 = new Employee("Eric", 65000, null, null);
+        empl3.setPhones(createDefaultPhones(empl3));
 
-        Employee empl1 = createDefaultEmployee("John", 50000, dept1);
-        Employee empl2 = createDefaultEmployee("Paul", 65000, dept1);
-        Employee empl3 = createDefaultEmployee("Keith", 100000, dept2);
-        employeeRepository.createAndSaveAll(empl1, empl2);
+        Department dept1 = new Department("Dept-1a", Arrays.asList(empl1, empl2));
+        empl1.setDepartment(dept1);
+        empl2.setDepartment(dept1);
 
-        dept1.setEmployees(Arrays.asList(empl1, empl2));
-        dept2.setEmployees(Collections.singletonList(empl3));
+        Department dept2 = new Department("Dept-2a", Collections.singletonList(empl3));
+        empl3.setDepartment(dept2);
+
+        em.getTransaction().begin();
+        em.persist(empl1);
+        em.persist(empl2);
+        em.persist(empl3);
+        em.getTransaction().commit();
+        em.clear();
     }
 
-    private Department createDefaultDepartment(final String name) {
-        final Department department = new Department();
-        department.setName(name);
-        return department;
-    }
-
-    private Employee createDefaultEmployee(final String name, final int salary, final Department department) {
-        List<Phone> phones = phoneRepository.createAndSaveAll(createDefaultPhones());
-        final Employee employee = new Employee();
-        employee.setName(name);
-        employee.setSalary(salary);
-        employee.setDepartment(department);
-        employee.setPhones(phones);
-        return employee;
-    }
-
-    private List<Phone> createDefaultPhones() {
-        final List<Phone> phones = Arrays.asList(
-                createDefaultPhone("Work", createRandomPhoneNumber()),
-                createDefaultPhone("Private", createRandomPhoneNumber())
+    private static List<Phone> createDefaultPhones(Employee employee) {
+        return Arrays.asList(
+                new Phone("Work", createRandomPhoneNumber(), employee),
+                new Phone("Private", createRandomPhoneNumber(), employee)
         );
-        return phones;
     }
 
-    private Phone createDefaultPhone(final String type, final String randomPhoneNumber) {
-        final Phone phone = new Phone();
-        phone.setType(type);
-        phone.setNumber(randomPhoneNumber);
-        return phone;
-    }
-
-    private String createRandomPhoneNumber() {
+    private static String createRandomPhoneNumber() {
         return IntStream.rangeClosed(0, 9)
                 .map(x -> (int) (Math.random() * 10))
                 .mapToObj(String::valueOf)
                 .collect(Collectors.joining());
     }
 
-
+    private void printEmployees() {
+        StringBuilder sb = new StringBuilder("# DbInitializer - data initialized");
+        em.createQuery("select e from Employee e").getResultList().stream()
+                .forEach(e -> sb.append("\n# " + e));
+        System.out.println(sb.toString());
+    }
 }

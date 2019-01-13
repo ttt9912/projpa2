@@ -1,9 +1,7 @@
 package ch7.entity;
 
 import common.entity.BaseEntity;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.List;
@@ -15,10 +13,12 @@ import java.util.List;
  * @NamedQueries for more than one @NamedQuery for an Entity
  */
 
+@Entity
 @Getter
 @Setter
-@ToString(exclude = {"department", "phones"})
-@Entity
+@AllArgsConstructor
+@NoArgsConstructor
+@ToString
 @NamedQuery(name = "Employee.findByName",
         query = "SELECT e FROM Employee e " +
                 "WHERE e.name = :empName")
@@ -26,12 +26,10 @@ public class Employee extends BaseEntity {
     private String name;
     private long salary;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.PERSIST)
     private Department department;
 
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "EMPL_ID")
     private List<Phone> phones;
-
-
 }

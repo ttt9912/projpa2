@@ -20,17 +20,11 @@ class Ch7App {
     private static final EntityManagerFactory emf = Persistence.createEntityManagerFactory("ch7EmployeePU");
     private static final EntityManager em = emf.createEntityManager();
     private final QueryServiceJPQL queryService = new QueryServiceJPQL(em);
+    private final DepartmentRepository departmentRepository = new DepartmentRepository(em);
 
     @BeforeAll
     static void initData() {
-        new DbInitializer(em).insertDefaultData();
-    }
-
-
-    @Test
-    void jpql_syntax() {
-        System.out.println("Implicit Join:\t" + queryService.implicitJoin());
-        System.out.println("Explicit Join:\t");
+        new DbInitializer();
     }
 
     @Test
@@ -41,11 +35,15 @@ class Ch7App {
         System.out.println("JPQL Query 2:\t" + queryService.findEmployeeNamesTypeSafe());
         System.out.println("JPQL Query 3:\t" + queryService.findFilteredEmployees());
 
-        System.out.println("JPQL Query 4:\t" + queryService.findEmployeesInDepartment().stream()
+        System.out.println("JPQL Query 4:\t" + queryService.implicitJoinEmployeePhones().stream()
                 .map(Arrays::toString)
                 .collect(Collectors.joining(", ")));
 
-        System.out.println("JPQL Query 5:\t" + queryService.summarizeDepartment().stream()
+        System.out.println("JPQL Query 5:\t" + queryService.explicitJoinEmployeePhones().stream()
+                .map(Arrays::toString)
+                .collect(Collectors.joining(", ")));
+
+        System.out.println("JPQL Query 6:\t" + queryService.summarizeDepartment().stream()
                 .map(Arrays::toString)
                 .collect(Collectors.joining(", ")));
     }
@@ -53,22 +51,19 @@ class Ch7App {
     @Test
     void dynamic_queries() {
         // parametrized
+        System.out.println("Dynamic Query 0:\t" +
+                queryService.findByDepartmentAndEmployee0("Dept-1a", "John"));
 
         System.out.println("Dynamic Query 1:\t" +
                 queryService.findByDepartmentAndEmployee("Dept-1a", "John"));
 
         System.out.println("Dynamic Query 2:\t" +
                 queryService.findByDepartmentAndEmployee2("Dept-1a", "John"));
-    }
 
-    @Test
-    void dynamic_queris_with_typed_parameters() {
-        // parameters are types (i.e. other Entities)
-
-        final DepartmentRepository departmentRepository = new DepartmentRepository(em);
-        final Department department = departmentRepository.findByName("Dept-1a");
-
-        System.out.println(queryService.findEmployeesByDepartment(department));
+        // with entities as parameters
+        Department department = departmentRepository.findByName("Dept-1a");
+        System.out.println("Dynamic Query 3:\t" +
+                queryService.findByDepartmentAndEmployee3(department, "John"));
     }
 
     @Test
@@ -91,13 +86,14 @@ class Ch7App {
          *  Entity Manager Factory (only useful in specific cases i.e. when
          *  a query is not known until runtime but then executed repeadetly)
          */
-        final String query =
-                "SELECT e.salary " +
-                        "FROM Employee e " +
-                        "WHERE e.department.name = :deptName AND " +
-                        "e.name = :empName";
 
-        TypedQuery<Long> namedQuery = em.createQuery(query, Long.class);
+        // create query
+        TypedQuery<Long> namedQuery = em.createQuery("SELECT e.salary " +
+                "FROM Employee e " +
+                "WHERE e.department.name = :deptName AND " +
+                "e.name = :empName", Long.class);
+
+        // add query as named query to entity manager factory
         emf.addNamedQuery("findSalaryForNameAndDepartment", namedQuery);
 
         // execute

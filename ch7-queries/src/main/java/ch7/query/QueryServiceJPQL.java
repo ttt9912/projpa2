@@ -18,31 +18,20 @@ public class QueryServiceJPQL {
         this.em = em;
     }
 
-    // ---------------------------------------------------------
-    // Query syntax
-    // ---------------------------------------------------------
-    public List implicitJoin() {
-        return em.createQuery("SELECT p.number FROM Employee e, Phone p " +
-                "WHERE e = p.employee AND e.department.name = 'Dept-1a' AND p.type = 'Private'")
-                .getResultList();
-    }
-
-
-    // Query Types
 
     // ---------------------------------------------------------
-    // Static Queries
+    // Static Queries / Query syntax
     // ---------------------------------------------------------
 
     // Query: untyped
     public List findEmployeeNames() {
-        return em.createQuery("SELECT e FROM  Employee e")
+        return em.createQuery("SELECT e.name FROM  Employee e")
                 .getResultList();
     }
 
     // TypedQuery: typesafe
     public List<String> findEmployeeNamesTypeSafe() {
-        return em.createQuery("SELECT e FROM  Employee e", String.class)
+        return em.createQuery("SELECT e.name FROM  Employee e", String.class)
                 .getResultList();
     }
 
@@ -50,17 +39,23 @@ public class QueryServiceJPQL {
     public List<Employee> findFilteredEmployees() {
         return em.createQuery(
                 "SELECT e FROM  Employee e " +
-                        "WHERE e.department = 'Dept-1a' AND " +
+                        "WHERE e.department.name = 'Dept-1a' AND " +
                         "e.name IN ('John', 'Paul')", Employee.class)
                 .getResultList();
     }
 
-    // Join
-    public List<Object[]> findEmployeesInDepartment() {
+    // implicit Join
+    public List<Object[]> implicitJoinEmployeePhones() {
+        return em.createQuery("SELECT e.name, p.number FROM Employee e, Phone p " +
+                "WHERE e = p.employee", Object[].class)
+                .getResultList();
+    }
+
+    // explicit JOIN
+    public List<Object[]> explicitJoinEmployeePhones() {
         return em.createQuery(
-                "SELECT d, e " +
-                        "FROM  Department d JOIN d.employees e " +
-                        "WHERE e.name = 'John'", Object[].class)
+                "SELECT e.name, p.number " +
+                        "FROM Employee e JOIN e.phones p", Object[].class)
                 .getResultList();
     }
 
@@ -77,6 +72,20 @@ public class QueryServiceJPQL {
     // ---------------------------------------------------------
     // Dynamic Queries
     // ---------------------------------------------------------
+
+    // Parametrizing with concatenation - very bad!
+    // - creates new query each time
+    // - injection attacks
+    public Employee findByDepartmentAndEmployee0(final String deptName, final String empName) {
+        String queryString = "SELECT e " +
+                "FROM  Employee e " +
+                "WHERE e.department.name = '" + deptName + "' " +
+                "AND e.name = '" + empName + "'";
+
+
+        return em.createQuery(queryString, Employee.class)
+                .getSingleResult();
+    }
 
     // Parametrizing with '?'
     public Employee findByDepartmentAndEmployee(final String deptName, final String empName) {
@@ -106,16 +115,15 @@ public class QueryServiceJPQL {
                 .getSingleResult();
     }
 
-    // ---------------------------------------------------------
     // Dynamic Queries with typed parameters
-    // ---------------------------------------------------------
-    public List<Employee> findEmployeesByDepartment(Department department) {
-        final String queryStirng = "SELECT e " +
-                "FROM  Employee e " +
-                "WHERE e.department = :dept";
+    public List<Employee> findByDepartmentAndEmployee3(Department department, String empName) {
+        final String queryStirng = "SELECT e FROM  Employee e " +
+                "WHERE e.department = :dept " +
+                "AND e.name = :empName";
 
         return em.createQuery(queryStirng, Employee.class)
                 .setParameter("dept", department)
+                .setParameter("empName", empName)
                 .getResultList();
     }
 
